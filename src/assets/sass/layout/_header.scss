@@ -1,0 +1,84 @@
+/*header.vue*/
+.header{
+    height: 85vh;
+    background-image: 
+        linear-gradient(
+            to right bottom,
+                rgba($color-white,0.15),
+                rgba($color-grey-dark,0.65)),
+                url(../img/chef-small.jpg);
+    background-size: cover;
+    background-position:bottom;
+    position: relative;
+
+    @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
+        -webkit-clip-path:polygon(0 0,100% 0,100% 75vh,0 100%);
+        clip-path:polygon(0 0,100% 0,100% 75vh,0 100%);/*讓圖片空缺右下角的三角形*/ 
+        height: 95vh;
+    }
+
+    @media  only screen and (min-resolution:192dpi) and (min-width:37.5em),
+            only screen and (-webkit-min-device-pixel-ratio:2) and (min-width:37.5em),
+            only screen and (min-width:125em){
+        background-image: 
+            linear-gradient(
+                to right bottom,
+                rgba($color-white,0.45),
+                rgba($color-grey-dark,0.65)),
+                url(../img/chef.jpg);
+    }
+
+    @include respond(phone){
+        -webkit-clip-path:polygon(0 0,100% 0,100% 85vh,0 100%);
+        clip-path:polygon(0 0,100% 0,100% 85vh,0 100%);/*讓圖片空缺右下角的三角形*/
+    }
+
+    &__logo-box{
+        position: absolute;
+        top:3rem;
+        left: 3rem;
+    }
+    &__logo{
+        height: 7rem;
+    }
+    &__text-box{
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+}
+.heading-primary{
+    color: $color-white;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    margin-bottom:7rem;
+
+    &--main{
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+        -webkit-animation:moveInLeft 1s ease-out;
+        animation:moveInLeft 1s ease-out;
+
+        @include respond(phone){
+            letter-spacing: 1rem;
+            font-size: 5rem;
+        }
+
+    }
+    &--sub{
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        -webkit-animation:moveInLeft 1s ease-out;
+        animation:moveInRight 1s ease-out;
+
+        @include respond(phone){
+            letter-spacing: .5rem;
+        }
+    }
+}

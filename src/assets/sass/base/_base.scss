@@ -1,0 +1,49 @@
+/*全局*/
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    /*box-sizing: border-box;*/
+    box-sizing: inherit;
+}
+html{
+    /*width 1200-1800*/
+    font-size: 62.5%;/*1rem = 10px ,10/16 define what 1rem is*/
+
+    /*width 900-1800*/
+    @include respond(tab-land){ 
+        font-size: 56.25%;//1rem = 9px ,9/16
+    }
+    /*width 600-900*/
+    @include respond(tab-port){
+        font-size: 50%;//1rem = 8px 8/16
+    }
+    /*width 0-600*/
+    @include respond(phone){
+        font-size: 30%;//1rem = 4.8px 4.8/16
+    }
+    /*width 1800+*/
+    @include respond(big-desktop){
+        font-size: 75%;//1rem = 12px, 12/16
+    }
+}
+body{
+    font-family: "Lato",sans-serif;
+    font-weight: 400;
+    /*font-size: 16px;*/
+    line-height: 1.7;
+    color: $color-grey-dark;
+    padding: 3rem;
+    box-sizing: border-box;
+
+    /*width 600-900*/
+    @include respond(tab-port){
+        padding: 0;//1rem = 8px 8/16
+    }
+}
+
+::selection{
+    background-color: $color-yellow-light;
+    color: $color-white;
+}
