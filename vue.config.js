@@ -1,21 +1,6 @@
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
         ? '/Delish/': '/',
-    css:{
-        loaderOptions:{
-            scss:{
-                //具体路径根据项目pei'zhi
-                prependData: `
-                    @import "~@/variables.scss";
-                    @import "~@/function.scss";
-                    @import "~@/mixins.scss";
-                    @import "~@/animation.scss";
-                    @import "~@/base.scss";
-                    @import "~@/utilities.scss";
-                `
-            }
-        }
-    }
 }
 /*const path = require('path')
 
