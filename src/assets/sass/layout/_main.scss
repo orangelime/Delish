@@ -4,7 +4,8 @@
     margin-top: -20vh;/*95vh-75vh*/
 
     @include respond(tab-port){
-        padding: 23rem 0;
+        padding: 30rem 0;
+        /*padding: 23rem 0;*/
     }
 }
 .heading-secondary{
