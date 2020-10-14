@@ -1,49 +1,10 @@
 <template>
     <div class="popup" id="popup">
         <div class="popup__content">
-            <!--<div class="popup__left">
-                <form action="#" class="form">
-                    <div class="u-margin-bottom-medium">
-                        <h2 class="heading-secondary">
-                            Start Booking now
-                        </h2>
-                    </div>
-                    <div class="form__group">
-                        <img class="form__icon form__icon-1" alt="email icon"  src="../assets/img/email.png">
-                        <input type="email" class="form__input" id="email" placeholder="Email address" required>
-                        <label for="email" class="form__label">Email address</label>
-                    </div>
-                    <div class="form__group">
-                        <img class="form__icon form__icon-1" alt="lock icon"  src="../assets/img/padlock.png">
-                        <input type="password" class="form__input" id="name" placeholder="password" required>
-                        <label for="password" class="form__label">Password</label>
-                    </div>
-                    <div class="form__text u-margin-bottom-medium">
-                        <h3 class="heading-tertiary--normal">
-                            Don't have an account?
-                            <a href="#">Sign Up</a>
-                        </h3>
-                    </div>
-                    <div class="form__group">
-                        <a href="#popup" class="btn btn--signin btn--signin-1">Sign In &rarr;</a>
-                    </div>  
-                    <div class="form__group">
-                        <g-signin-button
-                            :params="googleSignInParams"
-                            @success="onSignInSuccess"
-                            @error="onSignInError">
-                            <a href="#" class="btn btn--signin btn--signin-2">Sign In with Google &rarr;</a>
-                            <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
-                        </g-signin-button>
-                    </div>   
-                </form>
-            </div>-->
-            
             <div class="popup__dialog">
                 <a href="#" class="popup__close">&times;</a>
                 <div class="popup__box">
                     <div class="popup__logobox">
-                        <!--<img srcset="../assets/img/logo-1x.png 1x,../assets/img/logo-2x.png 2x" alt="Full logo" class="footer__logo" src="../assets/img/logo-2x.png">-->
                         <img class="popup__logo" src="../assets/img/logo-white.png" alt="Logo">
                     </div>
                     <div class="popup__text">
@@ -53,17 +14,8 @@
                         <h1 class="popup__heading popup__heading-1">
                             20% off the unlimited first purchase amount
                         </h1>
-                        
                     </div>
                 </div>
-                
-                
-                <!--<div class="popup__logo-box">
-                    <div class="popup__logo">
-                        <img srcset="../assets/img/logo-1x.png 1x,../assets/img/logo-2x.png 2x" alt="Full logo" class="footer__logo" src="../assets/img/logo-2x.png">
-                    </div>
-                    
-                </div>-->
             </div>
             <div class="popup__button">
                 <div class="popup__button-left">
@@ -79,25 +31,8 @@
 </template>
 
 <script>
-import GSignInButton from 'vue-google-signin-button';
 export default {
     name:'Popup',
-    data(){
-        return {
-            googleSignInParams: {
-                client_id: '899612929482-t0i2u84nmh7pm9mj2fn6bu55b18sfngg.apps.googleusercontent.com'
-            }
-        }
-    },
-    methods:{
-        onSignInSuccess (googleUser) {
-            const profile = googleUser.getBasicProfile()
-            console.log('yes')
-        },
-        onSignInError (error) {
-            console.log('OH NOES', error)
-        }
-    }
 }
 </script>
 

@@ -8,7 +8,7 @@
         </div>
         <div class="signin__content">
             <div class="signin__left">
-                <form action="#" class="form" @submit.prevent="login">
+                <form action="#" class="form" @submit.prevent="userSignIn">
                     <div class="u-margin-bottom-medium">
                         <h2 class="heading-secondary">
                             Start Booking now
@@ -36,14 +36,10 @@
                         </button>
                     </div>  
                     <div class="form__group">
-                        <!--<a href="#popup" class="btn btn--signin btn--signin-2">Sign In with Google &rarr;</a>
-                        <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">-->
-                        <!--<meta name="google-signin-scope" content="profile email">
-                        <meta name="google-signin-client_id" content="899612929482-t0i2u84nmh7pm9mj2fn6bu55b18sfngg.apps.googleusercontent.com">-->
                         <g-signin-button
                             :params="googleSignInParams"
-                            @success="onSignInSuccess"
-                            @error="onSignInError">
+                            @success="googleSignInSuccess"
+                            @error="googleSignInError">
                             <a href="#" class="btn btn--signin btn--signin-2">Sign In with Google &rarr;</a>
                             <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
                         </g-signin-button>
@@ -52,7 +48,6 @@
                 </form>
             </div>
             <div class="signin__right">
-                
                 <div class="signin__logo-box">
                     <div class="signin__logo">
                         <img srcset="../assets/img/logo-1x.png 1x,../assets/img/logo-2x.png 2x" alt="Full logo" class="footer__logo" src="../assets/img/logo-2x.png">
@@ -80,21 +75,21 @@ export default {
         }
     },
     methods:{
-        login(){
+        userSignIn(){
             //let auth = true;
             if(this.email == '1234@email.com' && this.password == '1234'){
-                localStorage.setItem('token', 'ImSignin')
-                this.$router.push("/");
+                this.$store.dispatch('login');
+                console.log('login');
             }else{
                 alert("login failed");
             }
         },
-        onSignInSuccess (googleUser) {
+        googleSignInSuccess (googleUser) {
             const profile = googleUser.getBasicProfile();
             this.$router.push('/');
             console.log("yes");
         },
-        onSignInError (error) {
+        googleSignInError (error) {
             console.log('OH NOES', error);
         }
     }

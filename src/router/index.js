@@ -38,17 +38,17 @@ const router = new VueRouter({
   routes
 })
 
-//路由守衛
+
+//router guard
 router.beforeEach((to, from, next)=>{
   const isLogin = localStorage.getItem('token') == 'ImSignin' ;
   if( isLogin ){
-    next();
+    next('/');
   } else {
     if( to.path !== '/signin')
-      next('/signin');
+      next()
     else
       next();
-      
   }
 });
 
