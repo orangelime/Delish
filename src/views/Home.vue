@@ -1,11 +1,13 @@
 <template>
   <div class="home">
+    
     <Navigation></Navigation>
     <Header></Header>
     <Main></Main>
     <Footer></Footer>
     <Popup></Popup>
-    <router-view></router-view>
+    
+    
   </div>
 </template>
 
@@ -15,6 +17,7 @@ import Main from '@/components/Main'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import Popup from '@/components/Popup'
+
 
 
 export default {

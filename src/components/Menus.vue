@@ -100,7 +100,7 @@
                                 <p class="card__price-only">Only</p>
                                 <p class="card__price-value">$2,688</p>
                             </div>
-                            <a href="#popup" class="btn btn--purple">Book now!</a>
+                            <a href="#popup" class="btn btn--purple">Book now!</a> 
                         </div>
                     </div>
                 </div>

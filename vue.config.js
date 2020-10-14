@@ -1,6 +1,7 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/Delish/': '/',
+    /*publicPath: process.env.NODE_ENV === 'production'
+        ? '/Delish/': '/',*/
+    publicPath: './'
 }
 /*const path = require('path')
 

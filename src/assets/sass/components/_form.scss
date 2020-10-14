@@ -20,15 +20,19 @@
         transition: all .3s;
         display: block;
         
+        @include respond(tab-land){
+            width: 100%;
+        }
+
 
         &:focus{
             outline: none;
             box-shadow:0 1rem 2rem rgba($color-black,.1);
-            border-bottom: 3px solid $color-yellow-light;
+            //border: 3px solid $color-yellow-light;
         }
         
         &:focus:invalid{
-            border-bottom: 3px solid $color-yellow-dark;
+            border: 1px solid $color-yellow-light;
         }
 
         &::-webkit-input-placeholder{

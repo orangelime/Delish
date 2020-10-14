@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <div class="header__logo-box">
-            <img class="header__logo" src="../../dist/img/logo-white.ca41b4a0.png" alt="Logo">
+            <img class="header__logo" src="../assets/img/logo-white.png" alt="Logo">
         </div>
         <div class="header__text-box">
             <h1 class="heading-primary">

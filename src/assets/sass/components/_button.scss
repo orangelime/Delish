@@ -81,10 +81,26 @@
 
         &-1{
             background: $color-yellow-light;
+            line-height: 2.7rem;
         }
 
         &-2{
             background: $color-blue-light;
+        }
+    }
+    &--popup{
+        background: $color-yellow-light;
+        color: $color-white;
+        width: 100%;
+        text-align: center;
+
+        &-1{
+            background: $color-white;
+            color: $color-yellow-light;
+        }
+
+        &::after{
+            background: $color-yellow-dark;
         }
     }
     &::after{

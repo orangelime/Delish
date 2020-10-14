@@ -3,9 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 //import '@/assets/sass/app.scss';
-import '@/assets/css/style.css';
-//import '@/assets/css/icon-font.css';
+import '@/assets/css/style.css'
+import '@/assets/css/icon-font.css';
+import GSignInButton from 'vue-google-signin-button'
 
+Vue.use(GSignInButton);
 
 
 

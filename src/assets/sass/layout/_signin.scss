@@ -1,0 +1,123 @@
+.signin{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    //background-color: rgba($color-grey-dark,.8);
+    background-image: 
+        linear-gradient(
+            to right bottom,
+                rgba($color-black,0.2),
+                rgba($color-grey-dark,0.8)),
+                url(../img/del-11.jpg);
+    background-size: cover;
+    background-position:center;
+    
+    @media  only screen and (min-resolution:192dpi) and (min-width:37.5em),
+            only screen and (-webkit-min-device-pixel-ratio:2) and (min-width:37.5em),
+            only screen and (min-width:125em){
+        background-image: 
+            linear-gradient(
+                to right bottom,
+                rgba($color-black,0.2),
+                rgba($color-grey-dark,0.8)),
+                url(../img/del-11-large.jpg);
+    }
+    
+    &__content{
+        @include absCenter;
+        width: 75%;
+        height: 50rem;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black,.2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        
+        //opacity: 0;
+        //transform: translate(-50%,-50%) scale(0.25);
+        //transition: all .5s .2s;
+    }
+    &__left{
+        width: 50%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }
+    /*&__img{
+        display: block;
+        width: 100%;
+        
+    }*/
+    &__text{
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        column-count: 2;
+        column-gap: 4rem;//1rem=14px
+        column-rule: 1px solid $color-grey-light-2;
+        -moz-hyphens:auto;
+        -ms-hyphens:auto;
+        -webkit-hyphens:auto;
+        hyphens:auto;
+    }
+    &__right{
+        width: 50%;
+        display: table-cell;
+        background-image: linear-gradient(to right bottom,$color-white,$color-yellow-dark);
+        position: relative;
+    }
+    &__logo-box,&__logo{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    &__logo-box{
+        background-color: $color-white;
+        transition: all .3s;
+
+        @supports (not (clip-path:polygon(0 0))) and (-webkit-clip-path:polygon(0 0)){
+            border-radius: 50%;
+            height: 23rem;
+            width: 23rem;
+        }
+
+        @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
+            -webkit-clip-path:polygon(25% 37.5%, 50% 25% , 75% 37.5% , 75% 62.5% , 50% 75% , 25% 65.5%);
+            clip-path:polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+            height: 23rem;
+            width: 20rem;
+        }
+        
+        &:hover{
+            height: 23rem;
+            width: 23rem;
+            border-radius: 50%;
+
+            @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
+                -webkit-clip-path:circle(50% at 50% 50%);
+                clip-path:circle(50% at 50% 50%);
+            }
+        }
+    }
+
+    @include respond(tab-land){
+        &__content{
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-between;
+            align-items: center;
+            height: 85%;
+        }
+        &__left{
+            flex:1;
+            width: 100%;
+        }
+        &__right{
+            flex:1;
+            width: 100%;
+        }
+    }
+
+    
+}
