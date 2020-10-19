@@ -43,6 +43,11 @@
                             <a href="#" class="btn btn--signin btn--signin-2">Sign In with Google &rarr;</a>
                             <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
                         </g-signin-button>
+                        <a href="#" class="btn btn--signin btn--signin-2" @click="googleSignOut">Sign Out with Google &rarr;</a>
+                        <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
+                        <!--<a href="#" class="btn btn--signin btn--signin-2" @click="googleSignIn">Sign In with Google &rarr;</a>
+                        <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">-->
+                        <img id="signintext">
                     </div>   
                     
                 </form>
@@ -63,34 +68,78 @@
 <script>
 import GSignInButton from 'vue-google-signin-button';
 
+import GAuth2 from 'vue-google-oauth2'
+import gauth from '../auth/gauth'
+
+
 export default {
     name:'Signin',
     data(){
         return {
             email:'',
             password:'',
+            isInit: false,
+            isSignIn: false,
             googleSignInParams: {
-                client_id: '899612929482-t0i2u84nmh7pm9mj2fn6bu55b18sfngg.apps.googleusercontent.com'
+                client_id: gauth.clientId
             }
         }
     },
+    /*mounted(){
+        let that = this
+        let checkGauthLoad = setInterval(function(){
+        that.isInit = that.$gAuth.isInit
+        that.isSignIn = that.$gAuth.isAuthorized
+        if(that.isInit) clearInterval(checkGauthLoad)
+        }, 1000);
+    },*/
     methods:{
         userSignIn(){
             //let auth = true;
             if(this.email == '1234@email.com' && this.password == '1234'){
                 this.$store.dispatch('login');
-                console.log('login');
+                console.log('userSignIn');
             }else{
                 alert("login failed");
             }
         },
         googleSignInSuccess (googleUser) {
-            const profile = googleUser.getBasicProfile();
-            this.$router.push('/');
-            console.log("yes");
+            if (googleUser) {
+                const profile = googleUser.getBasicProfile();
+            
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+            
+            document.getElementById('signintext').src = profile.getImageUrl();
+            //this.$router.push('/');
+            var id_token = googleUser.getAuthResponse().access_token;
+            //console.log("ID Token: " + id_token);
+            //console.log(googleUser.isSignedIn())
+            }else{
+                document.getElementById('signintext').innerText = '--';
+            }
+
+            
+            
+            
+            
         },
         googleSignInError (error) {
             console.log('OH NOES', error);
+        },
+        googleSignOut(authResult){
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                document.getElementById('signintext').innerText = '--';
+                console.log('User signed out.');
+                //location.reload();
+            });
+            
         }
     }
 }

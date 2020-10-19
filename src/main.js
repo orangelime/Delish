@@ -6,8 +6,10 @@ import store from './store'
 import '@/assets/css/style.css'
 import '@/assets/css/icon-font.css';
 import GSignInButton from 'vue-google-signin-button'
+import GAuth2 from 'vue-google-oauth2'
+import gauth from './auth/gauth'
 
-Vue.use(GSignInButton);
+Vue.use(GSignInButton,GAuth2,gauth);
 
 
 

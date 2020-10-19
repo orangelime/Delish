@@ -6,12 +6,10 @@ Vue.use(Vuex)
 
 const state = {
   token:window.localStorage.getItem('token'),
-  isShow:false
 }
 
 const getters = {
-  isSignIn:state => !!state.token,
-  isShow:state => state.isShow
+  isSignIn:state => !!state.token
 }
 
 const mutations = {
@@ -25,12 +23,12 @@ const actions = {
     commit('setToken','ImSignIn')
     window.localStorage.setItem('token', 'ImSignIn')
     router.push("/index");
-    console.log('in')
+    
   },
   logout:({commit}) => {
     commit('setToken',null)
     window.localStorage.removeItem('token')
-    console.log('out')
+    
   }
 }
 export default new Vuex.Store({
