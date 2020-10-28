@@ -36,13 +36,15 @@
                         </button>
                     </div>  
                     <div class="form__group">
-                        <g-signin-button
+                        <!--<g-signin-button
                             :params="googleSignInParams"
                             @success="googleSignInSuccess"
                             @error="googleSignInError">
                             <a href="#" class="btn btn--signin btn--signin-2">Sign In with Google &rarr;</a>
                             <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
-                        </g-signin-button>
+                        </g-signin-button>-->
+                        <a href="#" class="btn btn--signin btn--signin-2" @click="googleSignIn">Sign In with Google &rarr;</a>
+                        <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
                         <a href="#" class="btn btn--signin btn--signin-2" @click="googleSignOut">Sign Out with Google &rarr;</a>
                         <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
                         <!--<a href="#" class="btn btn--signin btn--signin-2" @click="googleSignIn">Sign In with Google &rarr;</a>
@@ -70,7 +72,8 @@ import GSignInButton from 'vue-google-signin-button';
 
 import GAuth2 from 'vue-google-oauth2'
 import gauth from '../auth/gauth'
-
+//import gSignin from '../auth/gSignin'
+import { mapState } from 'vuex'
 
 export default {
     name:'Signin',
@@ -78,11 +81,12 @@ export default {
         return {
             email:'',
             password:'',
-            isInit: false,
-            isSignIn: false,
+            //isInit: false,
+            //isSignIn: false,
             googleSignInParams: {
                 client_id: gauth.clientId
-            }
+            },
+            //loading: true
         }
     },
     /*mounted(){
@@ -93,6 +97,19 @@ export default {
         if(that.isInit) clearInterval(checkGauthLoad)
         }, 1000);
     },*/
+    computed: {
+        ...mapState({
+            signedIn: state => state.signedIn,
+            profile: state => state.profile
+        })
+    },
+    /*mounted() {
+            var self = this;
+            store.dispatch('auth/isSignedIn').then(() => {
+                self.loading = false;
+        });
+    },*/
+    
     methods:{
         userSignIn(){
             //let auth = true;
@@ -103,43 +120,23 @@ export default {
                 alert("login failed");
             }
         },
-        googleSignInSuccess (googleUser) {
-            if (googleUser) {
-                const profile = googleUser.getBasicProfile();
-            
-            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-            
-            document.getElementById('signintext').src = profile.getImageUrl();
-            //this.$router.push('/');
-            var id_token = googleUser.getAuthResponse().access_token;
-            //console.log("ID Token: " + id_token);
-            //console.log(googleUser.isSignedIn())
-            }else{
-                document.getElementById('signintext').innerText = '--';
-            }
-
-            
-            
-            
-            
+        /*googleSignInSuccess () {
+            gSignin.gSignInSuccess();
+        
         },
         googleSignInError (error) {
-            console.log('OH NOES', error);
+            gSignin.gSignInError();
         },
-        googleSignOut(authResult){
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                document.getElementById('signintext').innerText = '--';
-                console.log('User signed out.');
-                //location.reload();
-            });
-            
+        googleSignOut(){
+            gSignin.gSignOut();
+        }
+        
+        */
+        googleSignIn(){
+            this.$store.dispatch('gSignin/signIn');
+        },
+        googleSignOut(){
+            this.$store.dispatch('gSignin/signOut');
         }
     }
 }

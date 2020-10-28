@@ -1,6 +1,6 @@
 <template>
     <div class="shoppingcart">
-        shoppingcart
+        shoppinglist
     </div>
 </template>
 
