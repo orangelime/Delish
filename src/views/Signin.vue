@@ -49,7 +49,7 @@
                         <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
                         <!--<a href="#" class="btn btn--signin btn--signin-2" @click="googleSignIn">Sign In with Google &rarr;</a>
                         <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">-->
-                        <img id="signintext">
+                        
                     </div>   
                     
                 </form>
@@ -134,6 +134,7 @@ export default {
         */
         googleSignIn(){
             this.$store.dispatch('gSignin/signIn');
+            this.$router.push('/');
         },
         googleSignOut(){
             this.$store.dispatch('gSignin/signOut');

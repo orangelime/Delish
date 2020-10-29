@@ -90,7 +90,9 @@ const actions = {
                         if (response) {
                             dispatch('assignUser').then(() => {
                                 resolve(true);
-                                
+                                let GoogleAuth = gapi.auth2.getAuthInstance();
+                                var profile = GoogleAuth.currentUser.get().getBasicProfile();
+                                document.getElementById('signintext').src = profile.getImageUrl();
                             }).catch((err) => {
                                 dispatch('signOut').then(() => {
                                     reject();

@@ -2,6 +2,7 @@
     <header class="header">
         <div class="header__logo-box">
             <img class="header__logo" src="../assets/img/logo-white.png" alt="Logo">
+            <img id="signintext">
         </div>
         <div class="header__text-box">
             <h1 class="heading-primary">
