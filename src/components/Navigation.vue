@@ -7,7 +7,7 @@
         <div class="navigation__background">&nbsp;</div>
         <nav class="navigation__nav">
             <ul class="navigation__list">
-                <li class="navigation__item" v-if="isSignIn"><a href="#" class="navigation__link"  @click="userSignOut"><span>01</span>Sign out</a></li>        
+                <li class="navigation__item" v-if="isSignIn || signedIn"><a href="#" class="navigation__link"  @click="userSignOut"><span>01</span>Sign out</a></li>        
                 <li class="navigation__item" v-else><router-link to="/signin" class="navigation__link"  @click="selectNavItem"><span>01</span>Sign in</router-link></li>
                 <li class="navigation__item"><a href="#about" class="navigation__link"  @click="selectNavItem"><span>02</span>About Delish</a></li>
                 <li class="navigation__item"><a href="#benefits" class="navigation__link"  @click="selectNavItem"><span>03</span>Your benefits</a></li>
@@ -21,33 +21,36 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState,mapGetters } from 'vuex'
 import GSignInButton from 'vue-google-signin-button';
 export default {
     name:'Navigation',
     data(){
         return{
-            /*authorize:{
-                'client_id': CLIENT_ID, 
-                'scope': SCOPES, 
-                'immediate': false, 
-                cookie_policy: 'single_host_origin', 
-                response_type: 'token id_token'
-            }*/
+            
         }
     },
     methods:{
         selectNavItem(){
             document.getElementById("navi-toggle").checked = false;
         },
-        userSignOut(googleUser){
+        userSignOut(){
             this.$store.dispatch('logout');
+            this.$store.dispatch('gSignin/signOut');
             this.selectNavItem();
-            console.log('userSignOut');
+            //console.log(this.signedIn);
             
         }
     },
-    computed:mapGetters(['isSignIn']),
+    computed:{
+        ...mapState({
+            signedIn: state => state.gSignin.signedIn,
+            profile: state => state.gSignin.profile
+        }),
+        ...mapGetters(['isSignIn']),
+        //...mapGetters(['isGoogleSignIn'])
+    }
+    //computed:mapGetters(['isSignIn','gSignin/isGoogleSignIn']),
 }
 </script>
 

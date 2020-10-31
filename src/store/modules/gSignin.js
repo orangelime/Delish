@@ -1,10 +1,12 @@
 import gauth from '@/auth/gauth'
+import router from '@/router'
 
 const state = {
     signedIn: false,
     profile: null,
     clientId: gauth.clientId,
-    GoogleAuth: false
+    GoogleAuth: false,
+    
 }
 
 
@@ -32,8 +34,8 @@ const mutations = {
 }
 
 const actions = {
-    initGapi:({ commit }) => {
-        return new Promise((resolve, reject) => {
+    initGapi:({ state }) => {
+        return new Promise((resolve) => {
             gapi.load('auth2', {
                 callback: () => {
                     gapi.auth2.init({
@@ -50,7 +52,7 @@ const actions = {
             });
             })
         },
-        assignUser:({commit,state}) => {
+        assignUser:({commit}) => {
             
 
             let GoogleAuth = gapi.auth2.getAuthInstance();
@@ -89,11 +91,17 @@ const actions = {
                     }).then((response) => {
                         if (response) {
                             dispatch('assignUser').then(() => {
+                                commit('signIn');
+                                
                                 resolve(true);
+                                router.push('/index')
                                 let GoogleAuth = gapi.auth2.getAuthInstance();
                                 var profile = GoogleAuth.currentUser.get().getBasicProfile();
-                                document.getElementById('signintext').src = profile.getImageUrl();
+                                //console.log(state.signedIn)
+                                //document.getElementById('signintext').src = profile.getImageUrl();
+                                //document.getElementById('signintext').style.display = 'block';
                             }).catch((err) => {
+                                console.log(err);
                                 dispatch('signOut').then(() => {
                                     reject();
                                 });
@@ -110,13 +118,15 @@ const actions = {
             if (gapi && gapi.auth2 && gapi.auth2.getAuthInstance()) {
                 gapi.auth2.getAuthInstance().signOut().then(() => {
                 commit('signOut');
+                //document.getElementById('signintext').style.display = 'none';
                 resolve();
+                //console.log(state.signedIn)
                 }, () => {
-                commit('signOut');
-                resolve();
+                    commit('signOut');
+                    resolve();
+                   
                 });
-            }
-            else {
+            }else {
                 commit('signOut');
                 resolve();
             }

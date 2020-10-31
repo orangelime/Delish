@@ -45,11 +45,6 @@
                         </g-signin-button>-->
                         <a href="#" class="btn btn--signin btn--signin-2" @click="googleSignIn">Sign In with Google &rarr;</a>
                         <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
-                        <a href="#" class="btn btn--signin btn--signin-2" @click="googleSignOut">Sign Out with Google &rarr;</a>
-                        <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
-                        <!--<a href="#" class="btn btn--signin btn--signin-2" @click="googleSignIn">Sign In with Google &rarr;</a>
-                        <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">-->
-                        
                     </div>   
                     
                 </form>
@@ -99,8 +94,8 @@ export default {
     },*/
     computed: {
         ...mapState({
-            signedIn: state => state.signedIn,
-            profile: state => state.profile
+            signedIn: state => state.gSignin.signedIn,
+            profile: state => state.gSignin.profile
         })
     },
     /*mounted() {
@@ -115,29 +110,15 @@ export default {
             //let auth = true;
             if(this.email == '1234@email.com' && this.password == '1234'){
                 this.$store.dispatch('login');
-                console.log('userSignIn');
+                //console.log(this.signedIn);
             }else{
                 alert("login failed");
             }
         },
-        /*googleSignInSuccess () {
-            gSignin.gSignInSuccess();
-        
-        },
-        googleSignInError (error) {
-            gSignin.gSignInError();
-        },
-        googleSignOut(){
-            gSignin.gSignOut();
-        }
-        
-        */
         googleSignIn(){
             this.$store.dispatch('gSignin/signIn');
-            this.$router.push('/');
-        },
-        googleSignOut(){
-            this.$store.dispatch('gSignin/signOut');
+            //console.log(this.signedIn)
+            
         }
     }
 }
