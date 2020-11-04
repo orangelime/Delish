@@ -45,8 +45,7 @@
                         </g-signin-button>-->
                         <a href="#" class="btn btn--signin btn--signin-2" @click="googleSignIn">Sign In with Google &rarr;</a>
                         <img class="form__icon form__icon-2" alt="Google icon"  src="../assets/img/google-icon.png">
-                    </div>   
-                    
+                    </div>     
                 </form>
             </div>
             <div class="signin__right">
@@ -64,62 +63,35 @@
 
 <script>
 import GSignInButton from 'vue-google-signin-button';
-
-import GAuth2 from 'vue-google-oauth2'
-import gauth from '../auth/gauth'
-//import gSignin from '../auth/gSignin'
-import { mapState } from 'vuex'
+//import GAuth2 from 'vue-google-oauth2'
+import { mapState } from 'vuex';
 
 export default {
     name:'Signin',
     data(){
         return {
             email:'',
-            password:'',
-            //isInit: false,
-            //isSignIn: false,
-            googleSignInParams: {
-                client_id: gauth.clientId
-            },
-            //loading: true
+            password:''
         }
     },
-    /*mounted(){
-        let that = this
-        let checkGauthLoad = setInterval(function(){
-        that.isInit = that.$gAuth.isInit
-        that.isSignIn = that.$gAuth.isAuthorized
-        if(that.isInit) clearInterval(checkGauthLoad)
-        }, 1000);
-    },*/
     computed: {
         ...mapState({
             signedIn: state => state.gSignin.signedIn,
             profile: state => state.gSignin.profile
         })
     },
-    /*mounted() {
-            var self = this;
-            store.dispatch('auth/isSignedIn').then(() => {
-                self.loading = false;
-        });
-    },*/
-    
     methods:{
         userSignIn(){
-            //let auth = true;
             if(this.email == '1234@email.com' && this.password == '1234'){
                 this.$store.dispatch('login');
-                //console.log(this.signedIn);
             }else{
                 alert("login failed");
             }
         },
         googleSignIn(){
             this.$store.dispatch('gSignin/signIn');
-            //console.log(this.signedIn)
-            
         }
+        
     }
 }
 </script>

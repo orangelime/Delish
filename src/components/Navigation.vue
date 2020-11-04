@@ -21,15 +21,11 @@
 </template>
 
 <script>
-import { mapState,mapGetters } from 'vuex'
+import { mapState,mapGetters } from 'vuex';
 import GSignInButton from 'vue-google-signin-button';
+
 export default {
     name:'Navigation',
-    data(){
-        return{
-            
-        }
-    },
     methods:{
         selectNavItem(){
             document.getElementById("navi-toggle").checked = false;
@@ -38,8 +34,6 @@ export default {
             this.$store.dispatch('logout');
             this.$store.dispatch('gSignin/signOut');
             this.selectNavItem();
-            //console.log(this.signedIn);
-            
         }
     },
     computed:{
@@ -48,9 +42,7 @@ export default {
             profile: state => state.gSignin.profile
         }),
         ...mapGetters(['isSignIn']),
-        //...mapGetters(['isGoogleSignIn'])
     }
-    //computed:mapGetters(['isSignIn','gSignin/isGoogleSignIn']),
 }
 </script>
 

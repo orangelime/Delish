@@ -6,31 +6,24 @@ const state = {
     profile: null,
     clientId: gauth.clientId,
     GoogleAuth: false,
-    
 }
-
 
 const mutations = {
     signIn:(state, profile) => {
-            state.signedIn = true;
-            if (profile) {
-                state.profile = profile;
+        state.signedIn = true;
+        if (profile) {
+            state.profile = profile;
         }
     },
-    /*loading(state, loadingState) {
-        state.logging = loadingState;
-    },*/
     getAuthInstance:(state, authInstance) => {
         if (!state.GoogleAuth) {
-          state.GoogleAuth = authInstance;
+            state.GoogleAuth = authInstance;
         }
-      },
+    },
     signOut:(state) => {
         state.signedIn = false;
-        //state.loading = false;
         state.profile = null;
-    },
-    
+    }
 }
 
 const actions = {
@@ -40,34 +33,28 @@ const actions = {
                 callback: () => {
                     gapi.auth2.init({
                         client_id: state.clientId,
-                        //api_key: state.apiKey,
                         scope: state.scope,
-                        //immediate: true
-                      }).then(() => {
+                    }).then(() => {
                         gapi.client.load('https://sheets.googleapis.com/$discovery/rest?version=v4').then(() => {
-                          resolve();
+                            resolve();
                         });
-                      });
+                    });
                 }
             });
-            })
-        },
-        assignUser:({commit}) => {
-            
-
-            let GoogleAuth = gapi.auth2.getAuthInstance();
-            
-            if (GoogleAuth.currentUser.get().getBasicProfile()) {
-                return commit('signIn', GoogleAuth.currentUser.get().getBasicProfile());
-            }
-            
-        },
-        isSignedIn:({ dispatch, commit, state }) => {
-            return new Promise((resolve, reject) => {
-                dispatch('initGapi').then(() => {
-                    commit('getAuthInstance', gapi.auth2.getAuthInstance());
-                    let GoogleAuth = gapi.auth2.getAuthInstance();
-                    //let user = auth.isSignedIn.get();
+        })
+    },
+    assignUser:({commit}) => {
+        let GoogleAuth = gapi.auth2.getAuthInstance();
+        if (GoogleAuth.currentUser.get().getBasicProfile()) {
+            return commit('signIn', GoogleAuth.currentUser.get().getBasicProfile());
+        }
+    },
+    isSignedIn:({ dispatch, commit, state }) => {
+        return new Promise((resolve, reject) => {
+            dispatch('initGapi').then(() => {
+                commit('getAuthInstance', gapi.auth2.getAuthInstance());
+                let GoogleAuth = gapi.auth2.getAuthInstance();
+                //let user = auth.isSignedIn.get();
                 try {
                     if (GoogleAuth.isSignedIn.get() && state.profile) {
                         dispatch('assignUser').then(() => {
@@ -79,65 +66,54 @@ const actions = {
                     console.log(e);
                     reject(e);
                 }
-                });
-            })
-        },
-        signIn:({ dispatch, commit }) => {
-            console.log('signing in...');
-            return new Promise((resolve, reject) => {
-                dispatch('initGapi').then(async () => {
-                    await gapi.auth2.getAuthInstance().signIn().then({
-                        scope: 'profile email'
-                    }).then((response) => {
-                        if (response) {
-                            dispatch('assignUser').then(() => {
-                                commit('signIn');
-                                
-                                resolve(true);
-                                router.push('/index')
-                                let GoogleAuth = gapi.auth2.getAuthInstance();
-                                var profile = GoogleAuth.currentUser.get().getBasicProfile();
-                                //console.log(state.signedIn)
-                                //document.getElementById('signintext').src = profile.getImageUrl();
-                                //document.getElementById('signintext').style.display = 'block';
-                            }).catch((err) => {
-                                console.log(err);
-                                dispatch('signOut').then(() => {
-                                    reject();
-                                });
-                            })
-                        }
-                    })
+            });
+        })
+    },
+    signIn:({ dispatch, commit }) => {
+        console.log('signing in...');
+        return new Promise((resolve, reject) => {
+            dispatch('initGapi').then(async () => {
+                await gapi.auth2.getAuthInstance().signIn().then({
+                    scope: 'profile email'
+                }).then((response) => {
+                    if (response) {
+                        dispatch('assignUser').then(() => {
+                            commit('signIn');
+                            resolve(true);
+                            router.push('/index')
+                        }).catch((err) => {
+                            console.log(err);
+                            dispatch('signOut').then(() => {
+                                reject();
+                            });
+                        })
+                    }
                 })
-            })       
-                    
-        },
-        signOut:({ commit }) => {
-            console.log('signing out...');
-            return new Promise((resolve, reject) => {
+            })
+        })       
+    },
+    signOut:({ commit }) => {
+        console.log('signing out...');
+        return new Promise((resolve, reject) => {
             if (gapi && gapi.auth2 && gapi.auth2.getAuthInstance()) {
                 gapi.auth2.getAuthInstance().signOut().then(() => {
-                commit('signOut');
-                //document.getElementById('signintext').style.display = 'none';
-                resolve();
-                //console.log(state.signedIn)
+                    commit('signOut');
+                    resolve();
                 }, () => {
                     commit('signOut');
                     resolve();
-                   
                 });
             }else {
                 commit('signOut');
                 resolve();
             }
-            })
-        }
+        })
+    }
 }
 
 export default{
     namespaced: true,
     state,
-    
     mutations,
     actions
 }
