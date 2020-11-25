@@ -107,7 +107,7 @@
             </div>
         </div>
         <div class="u-center-text u-margin-bottom-huge">
-            <a href="#" class="btn btn--white">Discover all tours</a>
+            <a href="#" class="btn btn--white">Discover all menus</a>
         </div>
     </section>
 </template>

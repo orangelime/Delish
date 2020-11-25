@@ -200,9 +200,21 @@ body {
     .btn--signin {
       width: 100%; } }
   .btn--signin-1 {
-    background: #f39939; }
+    background: #f39939;
+    line-height: 2.7rem; }
   .btn--signin-2 {
     background: #4285f4; }
+
+.btn--popup {
+  background: #f39939;
+  color: #fff;
+  width: 100%;
+  text-align: center; }
+  .btn--popup-1 {
+    background: #fff;
+    color: #f39939; }
+  .btn--popup::after {
+    background: #e78319; }
 
 .btn::after {
   content: '';
@@ -590,12 +602,14 @@ body {
     width: 90%;
     transition: all .3s;
     display: block; }
+    @media only screen and (max-width: 75em) {
+      .form__input {
+        width: 100%; } }
     .form__input:focus {
       outline: none;
-      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-      border-bottom: 3px solid #f39939; }
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
     .form__input:focus:invalid {
-      border-bottom: 3px solid #e78319; }
+      border: 1px solid #f39939; }
     .form__input::-webkit-input-placeholder {
       color: #999; }
   .form__label {
@@ -1062,10 +1076,85 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all .3s;
+  /*&__left{
+        flex:1;
+        width: 100%;
+    }*/
+  /*&__content{
+        @include absCenter;
+        width: 75%;
+        height: 30rem;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black,.2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(0.25);
+        transition: all .5s .2s;
+    }*/
+  /*&__left{
+        width: 50%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }*/
   /*&__img{
         display: block;
         width: 100%;
         
+    }*/
+  /*&__text{
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        column-count: 2;
+        column-gap: 4rem;//1rem=14px
+        column-rule: 1px solid $color-grey-light-2;
+        -moz-hyphens:auto;
+        -ms-hyphens:auto;
+        -webkit-hyphens:auto;
+        hyphens:auto;
+    }*/
+  /*&__right{
+        width: 50%;
+        display: table-cell;
+        background-image: linear-gradient(to right bottom,$color-white,$color-yellow-dark);
+        position: relative;
+    }*/
+  /*&__logo-box,&__logo{
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%,-30%);
+    }
+    &__logo-box{
+        background-color: $color-white;
+        transition: all .3s;
+
+        @supports (not (clip-path:polygon(0 0))) and (-webkit-clip-path:polygon(0 0)){
+            border-radius: 50%;
+            height: 23rem;
+            width: 23rem;
+        }
+
+        @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
+            -webkit-clip-path:polygon(25% 37.5%, 50% 25% , 75% 37.5% , 75% 62.5% , 50% 75% , 25% 65.5%);
+            clip-path:polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+            height: 23rem;
+            width: 20rem;
+        }
+        
+        &:hover{
+            height: 23rem;
+            width: 23rem;
+            border-radius: 50%;
+
+            @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
+                -webkit-clip-path:circle(50% at 50% 50%);
+                clip-path:circle(50% at 50% 50%);
+            }
+        }
     }*/ }
   @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
     .popup {
@@ -1073,74 +1162,70 @@ body {
       backdrop-filter: blur(10px);
       background-color: rgba(0, 0, 0, 0.3); } }
   .popup__content {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 75%;
-    height: 50rem;
-    background-color: #fff;
-    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+    width: 50%;
+    background-color: none;
     border-radius: 3px;
-    display: table;
-    overflow: hidden;
-    opacity: 0;
     transform: translate(-50%, -50%) scale(0.25);
     transition: all .5s .2s; }
-  .popup__left {
-    width: 50%;
-    display: table-cell;
-    vertical-align: middle;
-    padding: 3rem 5rem; }
+  .popup__dialog {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(197, 193, 193, 0.9); }
+  .popup__button {
+    margin: 5rem 1rem 0 1rem;
+    display: flex;
+    justify-content: space-between; }
+    .popup__button-right {
+      flex: 1;
+      padding-left: 3rem; }
+      @media only screen and (max-width: 37.5em) {
+        .popup__button-right {
+          padding-left: 1rem; } }
+    .popup__button-left {
+      flex: 1; }
+  .popup__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%; }
+  .popup__logobox {
+    flex: 0 0 15%;
+    padding-top: 3rem; }
+  .popup__logo {
+    height: 10rem; }
   .popup__text {
-    font-size: 1.4rem;
-    margin-bottom: 4rem;
-    column-count: 2;
-    column-gap: 4rem;
-    column-rule: 1px solid #eee;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto; }
-  .popup__right {
-    width: 50%;
-    display: table-cell;
-    background-image: linear-gradient(to right bottom, #fff, #e78319);
-    position: relative; }
-  .popup__logo-box, .popup__logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
-  .popup__logo-box {
-    background-color: #fff;
-    transition: all .3s; }
-    @supports (not (clip-path: polygon(0 0))) and (-webkit-clip-path: polygon(0 0)) {
-      .popup__logo-box {
-        border-radius: 50%;
-        height: 23rem;
-        width: 23rem; } }
-    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-      .popup__logo-box {
-        -webkit-clip-path: polygon(25% 37.5%, 50% 25%, 75% 37.5%, 75% 62.5%, 50% 75%, 25% 65.5%);
-        clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
-        height: 23rem;
-        width: 20rem; } }
-    .popup__logo-box:hover {
-      height: 23rem;
-      width: 23rem;
-      border-radius: 50%; }
-      @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
-        .popup__logo-box:hover {
-          -webkit-clip-path: circle(50% at 50% 50%);
-          clip-path: circle(50% at 50% 50%); } }
-  @media only screen and (max-width: 75em) {
+    flex: 1;
+    padding-top: 2rem;
+    width: 90%; }
+  .popup__heading {
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #7f262a;
+    text-align: center;
+    padding-bottom: 3rem;
+    border-bottom: 2px solid #7f262a; }
+    .popup__heading-1 {
+      border: none;
+      padding-top: 3rem; }
+  @media only screen and (max-width: 37.5em) {
     .popup__content {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      height: 85%; }
+      height: 50%;
+      width: 50%; }
     .popup__left {
       flex: 1;
       width: 100%; }
@@ -1165,3 +1250,91 @@ body {
     line-height: 1; }
   .popup__close:hover {
     color: #fff; }
+
+.signin {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.2), rgba(119, 119, 119, 0.8)), url(../img/del-11.jpg);
+  background-size: cover;
+  background-position: center;
+  /*&__img{
+        display: block;
+        width: 100%;
+        
+    }*/ }
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-width: 125em) {
+    .signin {
+      background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.2), rgba(119, 119, 119, 0.8)), url(../img/del-11-large.jpg); } }
+  .signin__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 50rem;
+    background-color: #fff;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    display: table;
+    overflow: hidden; }
+  .signin__left {
+    width: 50%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3rem 5rem; }
+  .signin__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid #eee;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto; }
+  .signin__right {
+    width: 50%;
+    display: table-cell;
+    background-image: linear-gradient(to right bottom, #fff, #e78319);
+    position: relative; }
+  .signin__logo-box, .signin__logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+  .signin__logo-box {
+    background-color: #fff;
+    transition: all .3s; }
+    @supports (not (clip-path: polygon(0 0))) and (-webkit-clip-path: polygon(0 0)) {
+      .signin__logo-box {
+        border-radius: 50%;
+        height: 23rem;
+        width: 23rem; } }
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      .signin__logo-box {
+        -webkit-clip-path: polygon(25% 37.5%, 50% 25%, 75% 37.5%, 75% 62.5%, 50% 75%, 25% 65.5%);
+        clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+        height: 23rem;
+        width: 20rem; } }
+    .signin__logo-box:hover {
+      height: 23rem;
+      width: 23rem;
+      border-radius: 50%; }
+      @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+        .signin__logo-box:hover {
+          -webkit-clip-path: circle(50% at 50% 50%);
+          clip-path: circle(50% at 50% 50%); } }
+  @media only screen and (max-width: 75em) {
+    .signin__content {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      align-items: center;
+      height: 85%; }
+    .signin__left {
+      flex: 1;
+      width: 100%; }
+    .signin__right {
+      flex: 1;
+      width: 100%; } }

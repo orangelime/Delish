@@ -19,10 +19,10 @@
             </div>
             <div class="popup__button">
                 <div class="popup__button-left">
-                    <router-link to="/shoppinglist" class="btn btn--popup btn--popup-1 btn--animated">menus</router-link>
+                    <router-link to="/signin" class="btn btn--popup btn--animated">SignIn</router-link>
                 </div>
                 <div class="popup__button-right">
-                    <router-link to="/signin" class="btn btn--popup btn--animated">SignIn</router-link>
+                    <router-link to="/shoppingcart" class="btn btn--popup btn--popup-1 btn--animated">ShoppingCart</router-link>
                 </div>
             </div>
         </div>

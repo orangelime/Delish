@@ -13,6 +13,7 @@ const mutations = {
         state.signedIn = true;
         if (profile) {
             state.profile = profile;
+            console.log(profile)
         }
     },
     getAuthInstance:(state, authInstance) => {
