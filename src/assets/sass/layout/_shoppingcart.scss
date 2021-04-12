@@ -1,0 +1,147 @@
+.shoppingcart{
+    background: $color-grey-dark;
+    color:$color-white;
+        
+    
+    &__header{
+        height: 40vh;
+        background-image: 
+            linear-gradient(
+                to right bottom,
+                    rgba($color-white,0.15),
+                    rgba($color-grey-dark,0.65)),
+                    url(../img/chef-small.jpg);
+        background-size: cover;
+        background-position:bottom;
+        position: relative;
+
+        @media  only screen and (min-resolution:192dpi) and (min-width:37.5em),
+                only screen and (-webkit-min-device-pixel-ratio:2) and (min-width:37.5em),
+                only screen and (min-width:125em){
+            background-image: 
+                linear-gradient(
+                    to right bottom,
+                    rgba($color-white,0.45),
+                    rgba($color-grey-dark,0.65)),
+                    url(../img/chef.jpg);
+        }
+    }
+
+    &__welcome-content{
+        position: absolute;
+        top: 3rem;
+        right: 0;
+        //width: 28%;
+        width: 40rem;
+        
+
+        @include respond(phone){
+            right: 3rem;
+            
+        }
+    }
+    
+    &__welcome-box{
+        display: flex;
+        justify-content: space-between;
+        
+        &--right{
+            flex: 1;
+            text-align: center;
+        }
+
+        &--left{
+            text-align: right;
+            flex:0 0 46%;
+        }
+    }
+
+    &__content{
+        padding: 3rem 0 2rem 0;
+        
+        &--right{
+            padding-right: 3rem; 
+        }
+    }
+    
+    &__detail{
+        padding: 0 0 2rem 2rem;
+        line-height: 3rem;
+        
+        // .or{
+        //     color: $color-red-dark-1;
+        //     padding-left: 2rem;
+        // }
+
+        @include respond(phone){
+            line-height: 5rem;
+        }
+    }
+
+    label{
+        font-size:$default-font-size;
+        text-align: left;
+        height: 6rem;
+        display: inline-block;
+        padding-left: 0.5rem;
+    }
+    
+    &__basket{
+        outline: 1.5rem solid $color-red-dark-1;
+        box-shadow: 0 2.5rem 4rem rgba($color-black,.5);
+    }
+
+    &__table{
+        font-size:$default-font-size;
+        text-align: center;
+        
+        table{
+            margin: auto;
+        }
+
+        tr{
+            height: 7rem;
+            //width: 445px;
+        }
+
+        td{
+            vertical-align: middle;
+            text-align: center;
+            width: 500px;
+        }
+
+        .title{
+            font-weight: 900;
+            font-size: 2rem;
+        }
+
+        .textarea{
+            font-size:2rem;
+            min-height: 15rem;
+            max-width: 498.4px;
+            width: 100%;
+            border-radius: 5px;
+            background: $color-white;
+            color: $color-black;
+            border: 1px solid $color-grey-dark-2;
+            margin-bottom: 15px;
+        }
+
+        .warning-box{
+            text-transform: uppercase;
+            padding:1.5rem 4rem;
+            display: inline-block;
+            border-radius: 10rem;
+            font-size: $default-font-size;
+            background:$color-grey-light-3;
+            width: 90%;
+            color: $color-black;
+            text-align: center;
+            line-height: 2.7rem;
+
+            @include respond(tab-land){
+                width: 100%;
+            }
+        }
+    }
+}

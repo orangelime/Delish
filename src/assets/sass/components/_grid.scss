@@ -6,6 +6,15 @@
         max-width:50rem;
         padding: 0 3rem;
     }
+
+    &--1{
+        max-width: none;
+        
+        @include respond(tab-port){
+            max-width:$grid-width;
+            padding: 0 1rem 0 4rem;
+        }
+    }
         
     &:not(:last-child){
         margin-bottom:$gutter-vertical;

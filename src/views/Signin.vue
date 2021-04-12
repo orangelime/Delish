@@ -9,7 +9,7 @@
         <div class="signin__content">
             <div class="signin__left">
                 <form action="#" class="form" @submit.prevent="userSignIn">
-                    <div class="u-margin-bottom-medium">
+                    <div class="u-center-text u-margin-bottom-medium">
                         <h2 class="heading-secondary">
                             Start Booking now
                         </h2>

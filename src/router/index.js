@@ -8,7 +8,7 @@ import Signin from '@/views/Signin'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path:'/',
     redirect:'/index'
