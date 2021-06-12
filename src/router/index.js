@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Index from '../views/index'
 import Shoppingcart from '@/views/Shoppingcart'
 import Signin from '@/views/Signin'
+import Signup from '@/views/Signup'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,11 @@ const routes = [
     path: '/signin',
     name: 'Signin',
     component: Signin
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
   },
   {
     path: '/shoppingcart',

@@ -169,11 +169,20 @@ body {
 .u-margin-bottom-small {
   margin-bottom: 1.5rem !important; }
 
+.u-margin-top-giant {
+  margin-top: 15rem !important; }
+
 .u-margin-top-huge {
   margin-top: 10rem !important; }
 
 .u-margin-top-big {
   margin-top: 8rem !important; }
+
+.u-margin-top-small {
+  margin-top: 1.5rem !important; }
+
+.u-padding-top-small {
+  padding-top: 1.5rem !important; }
 
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
@@ -232,13 +241,13 @@ body {
 .btn--signin {
   width: 90%;
   color: #fff;
-  text-align: center; }
+  text-align: center;
+  line-height: 2.7rem; }
   @media only screen and (max-width: 75em) {
     .btn--signin {
       width: 100%; } }
   .btn--signin-1 {
-    background: #f39939;
-    line-height: 2.7rem; }
+    background: #f39939; }
   .btn--signin-2 {
     background: #4285f4; }
 
@@ -298,6 +307,12 @@ body {
     .row {
       max-width: 50rem;
       padding: 0 3rem; } }
+  .row--1 {
+    max-width: none; }
+    @media only screen and (max-width: 56.25em) {
+      .row--1 {
+        max-width: 114rem;
+        padding: 0 1rem 0 4rem; } }
   .row:not(:last-child) {
     margin-bottom: 8rem; }
     @media only screen and (max-width: 56.25em) {
@@ -774,6 +789,9 @@ body {
   .heading-secondary:hover {
     transform: skewY(2deg) skewX(15deg) scale(1.1);
     text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.15); }
+  .heading-secondary--1 {
+    display: block;
+    font-size: 2.5rem; }
 
 .heading-tertiary {
   font-size: 1.6rem;
@@ -1375,3 +1393,90 @@ body {
     .signin__right {
       flex: 1;
       width: 100%; } }
+
+.shoppingcart {
+  background: #777;
+  color: #fff; }
+  .shoppingcart__header {
+    height: 40vh;
+    background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.15), rgba(119, 119, 119, 0.65)), url(../img/chef-small.jpg);
+    background-size: cover;
+    background-position: bottom;
+    position: relative; }
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-width: 125em) {
+      .shoppingcart__header {
+        background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.45), rgba(119, 119, 119, 0.65)), url(../img/chef.jpg); } }
+  .shoppingcart__welcome-content {
+    position: absolute;
+    top: 3rem;
+    right: 0;
+    width: 40rem; }
+    @media only screen and (max-width: 37.5em) {
+      .shoppingcart__welcome-content {
+        right: 3rem; } }
+  .shoppingcart__welcome-box {
+    display: flex;
+    justify-content: space-between; }
+    .shoppingcart__welcome-box--right {
+      flex: 1;
+      text-align: center; }
+    .shoppingcart__welcome-box--left {
+      text-align: right;
+      flex: 0 0 46%; }
+  .shoppingcart__content {
+    padding: 3rem 0 2rem 0; }
+    .shoppingcart__content--right {
+      padding-right: 3rem; }
+  .shoppingcart__detail {
+    padding: 0 0 2rem 2rem;
+    line-height: 3rem; }
+    @media only screen and (max-width: 37.5em) {
+      .shoppingcart__detail {
+        line-height: 5rem; } }
+  .shoppingcart label {
+    font-size: 1.6rem;
+    text-align: left;
+    height: 6rem;
+    display: inline-block;
+    padding-left: 0.5rem; }
+  .shoppingcart__basket {
+    outline: 1.5rem solid #7f262a;
+    box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5); }
+  .shoppingcart__table {
+    font-size: 1.6rem;
+    text-align: center; }
+    .shoppingcart__table table {
+      margin: auto; }
+    .shoppingcart__table tr {
+      height: 7rem; }
+    .shoppingcart__table td {
+      vertical-align: middle;
+      text-align: center;
+      width: 500px; }
+    .shoppingcart__table .title {
+      font-weight: 900;
+      font-size: 2rem; }
+    .shoppingcart__table .textarea {
+      font-size: 2rem;
+      min-height: 15rem;
+      max-width: 498.4px;
+      width: 100%;
+      border-radius: 5px;
+      background: #fff;
+      color: #000;
+      border: 1px solid #999;
+      margin-bottom: 15px; }
+    .shoppingcart__table .warning-box {
+      text-transform: uppercase;
+      padding: 1.5rem 4rem;
+      display: inline-block;
+      border-radius: 10rem;
+      font-size: 1.6rem;
+      background: #c5c1c1;
+      width: 90%;
+      color: #000;
+      text-align: center;
+      line-height: 2.7rem; }
+      @media only screen and (max-width: 75em) {
+        .shoppingcart__table .warning-box {
+          width: 100%; } }

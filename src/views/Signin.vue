@@ -1,6 +1,5 @@
 <template>
     <div class="signin">
-        
         <div class="header__logo-box">
             <router-link to="/index">
                 <img class="header__logo" src="../assets/img/logo-white.png" alt="Logo">
@@ -27,7 +26,7 @@
                     <div class="form__text u-margin-bottom-medium">
                         <h3 class="heading-tertiary--normal">
                             Don't have an account?
-                            <a href="#">Sign Up</a>
+                            <router-link to="/signup">Sign Up</router-link>
                         </h3>
                     </div>
                     <div class="form__group">
@@ -62,8 +61,6 @@
 </template>
 
 <script>
-import GSignInButton from 'vue-google-signin-button';
-//import GAuth2 from 'vue-google-oauth2'
 import { mapState } from 'vuex';
 
 export default {
