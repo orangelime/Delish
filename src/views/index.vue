@@ -9,13 +9,10 @@
 <script>
 import Home from '@/views/Home'
 
-
-
 export default {
     name:'index',
     components:{
-        Home,
-        
+        Home
     }
 }
 </script>

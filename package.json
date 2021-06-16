@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 3000",
+    "serve": "vue-cli-service serve --port 3001",
     "build": "vue-cli-service build",
     "watch:sass": "node-sass src/assets/sass/app.scss src/assets/css/style.css -w",
     "devserver": "live-server",
@@ -15,6 +15,7 @@
     "all": "npm-run-all build compile:sass concat:css prefix:css compress:css"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "live-server": "^1.2.1",
     "node-sass": "^6.0.0",

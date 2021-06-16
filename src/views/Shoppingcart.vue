@@ -9,7 +9,10 @@
             <div class="shoppingcart__welcome-content">
                 <div class="shoppingcart__welcome-box" v-if="isSignIn || signedIn">
                     <div class="shoppingcart__welcome-box--left">
-                        <h1 class="heading-primary u-margin-top-small">Welcome &emsp; {{profile.sV}}</h1>
+                        <div class="shoppingcart__welcome-text">
+                            <p class="shoppingcart__welcome-text-1">Welcome &emsp;</p>
+                            <p class="shoppingcart__welcome-text-2">{{profile.getEmail()}}</p>
+                        </div>
                     </div>
                     <div class="shoppingcart__welcome-box--right">
                         <a class="btn btn--white btn--animated" @click="userSignOut">Sign out</a>

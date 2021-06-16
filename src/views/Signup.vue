@@ -7,7 +7,7 @@
         </div>
         <div class="signup__content">
             <div class="signup__box">
-                <form action="#" class="form">
+                <form action="#" class="form" @submit.prevent="userSignUp">
                     <div class="u-center-text u-margin-bottom-medium">
                         <h2 class="heading-secondary">
                             Create My Account
@@ -15,7 +15,7 @@
                     </div>
                     <div class="form__group">
                         <img class="form__icon form__icon-3" alt="user icon"  src="../assets/img/user.png">
-                        <input type="text" class="form__input" id="text" v-model="username" placeholder="username" required>
+                        <input type="text" class="form__input" id="text" v-model="name" placeholder="username" required>
                         <label for="text" class="form__label">Username</label>
                     </div>
                     <div class="form__group">
@@ -30,8 +30,8 @@
                     </div>
                     <div class="form__group">
                         <img class="form__icon form__icon-3" alt="lock icon"  src="../assets/img/padlock.png">
-                        <input type="password" class="form__input" id="password2" v-model="password" placeholder="confirm password" required>
-                        <label for="password" class="form__label">Confirm Password</label>
+                        <input type="password" class="form__input" id="password_confirm" v-model="password_confirm" placeholder="confirm password" required>
+                        <label for="password_confirm" class="form__label">Confirm Password</label>
                     </div>
                     <div class="form__text u-margin-bottom-medium">
                         <h3 class="heading-tertiary--normal">
@@ -51,15 +51,30 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import axios from 'axios';
+
 
 export default {
     name:'Signup',
     data(){
         return {
-            username:'',
+            name:'',
             email:'',
-            password:''
+            password:'',
+            password_confirm:''
+        }
+    },
+    methods:{
+        async userSignUp(){
+            // console.log(data);
+            await axios.post('register',{
+                    name:this.name,
+                    email:this.email,
+                    password:this.password,
+                    password_confirm:this.password_confirm
+            });
+            // console.log(response);
+            this.$router.push('/signin');
         }
     }
 }

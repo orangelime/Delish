@@ -44,16 +44,37 @@
     &__welcome-box{
         display: flex;
         justify-content: space-between;
+        text-align: center;
         
         &--right{
             flex: 1;
-            text-align: center;
         }
 
         &--left{
-            text-align: right;
             flex:0 0 46%;
         }
+    }
+
+    &__welcome-text{
+        font-size: 1.6rem;
+        color: #fff;
+        font-weight: bold;
+
+        &-1{
+            text-transform: uppercase;
+        }
+
+        &-2{
+            @include respond(phone){
+                overflow : hidden;
+                text-overflow : ellipsis;
+                white-space : nowrap;
+                width : 95px;
+                
+            }
+        }
+       
+        
     }
 
     &__content{
