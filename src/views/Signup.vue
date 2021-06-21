@@ -8,6 +8,11 @@
         <div class="signup__content">
             <div class="signup__box">
                 <form action="#" class="form" @submit.prevent="userSignUp">
+                    <!-- error -->
+                    <transition name="slide">
+                        <Error v-if="error" :error="error"></Error>
+                    </transition>
+                    
                     <div class="u-center-text u-margin-bottom-medium">
                         <h2 class="heading-secondary">
                             Create My Account
@@ -52,7 +57,7 @@
 
 <script>
 import axios from 'axios';
-
+import Error from '@/components/Error'
 
 export default {
     name:'Signup',
@@ -61,20 +66,29 @@ export default {
             name:'',
             email:'',
             password:'',
-            password_confirm:''
+            password_confirm:'',
+            error:''
         }
+    },
+    components:{
+        Error
     },
     methods:{
         async userSignUp(){
-            // console.log(data);
-            await axios.post('register',{
-                    name:this.name,
-                    email:this.email,
-                    password:this.password,
-                    password_confirm:this.password_confirm
-            });
-            // console.log(response);
-            this.$router.push('/signin');
+            try{
+                // console.log(data);
+                await axios.post('register',{
+                        name:this.name,
+                        email:this.email,
+                        password:this.password,
+                        password_confirm:this.password_confirm
+                });
+                // console.log(response);
+                this.$router.push('/signin');
+            }catch(e){
+                this.error = 'Error occurred!';
+            }
+        
         }
     }
 }

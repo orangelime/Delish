@@ -1,5 +1,7 @@
 <template>
     <div class="shoppingcart">
+
+        <!-- signin header -->
         <div class="shoppingcart__header">
             <div class="header__logo-box">
                 <router-link to="/index">
@@ -7,11 +9,13 @@
                 </router-link>
             </div>
             <div class="shoppingcart__welcome-content">
-                <div class="shoppingcart__welcome-box" v-if="isSignIn || signedIn">
+                <div class="shoppingcart__welcome-box" v-if="user || signedIn">
                     <div class="shoppingcart__welcome-box--left">
                         <div class="shoppingcart__welcome-text">
                             <p class="shoppingcart__welcome-text-1">Welcome &emsp;</p>
-                            <p class="shoppingcart__welcome-text-2">{{profile.getEmail()}}</p>
+                            <!-- <p class="shoppingcart__welcome-text-2">{{profile.getEmail()}}</p> -->
+                            <p class="shoppingcart__welcome-text-2">{{user.name}}</p>
+
                         </div>
                     </div>
                     <div class="shoppingcart__welcome-box--right">
@@ -19,8 +23,10 @@
                     </div>
                 </div>
                 <div class="shoppingcart__welcome-box" v-else>
-                    <div class="shoppingcart__welcome-box--left">
-                        <h1 class="heading-primary u-margin-top-small">Welcome</h1>
+                    <div class="shoppingcart__welcome-box--left shoppingcart__welcome-box--left-1">
+                        <h1 class="heading-primary u-margin-top-small">
+                            Welcome
+                        </h1>
                     </div>
                     <div class="shoppingcart__welcome-box--right">
                         <router-link to="/signin" class="btn btn--white btn--animated">Sign in</router-link>
@@ -34,17 +40,7 @@
             </div>
         </div>
         
-<!-- print result -->
-<!-- <div class="form-group form-check" v-for="item in Items" :key="item.id">
-            
-            <input type="checkbox"  v-model="user.fruitCollection" :id="item.name" :value="item.name">
-            <label class="form-check-label" :for="item.id">{{item.name}}</label>
-        </div>
-
-<div class="form-group">
-        {{user.fruitCollection.join(", ")}}
-</div> -->
-<!-- print result -->
+        <!-- select menu -->
         <div class="row row--1">
             <div class="col-1-of-2">
                 <div class="shoppingcart__content shoppingcart__content--left">
@@ -90,6 +86,7 @@
                     </div>
                 </div> 
             </div>
+
             <!--reservation-->
             <div class="col-1-of-2">
                 <div class="shoppingcart__content shoppingcart__content--right">
@@ -173,9 +170,9 @@ var array = []
 var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
 
 for (var i = 0; i < checkboxes.length; i++) {
-  
-  document.getElementById('result').innerText = array.push(checkboxes[i].value)
-  console.log(checkboxes);
+    
+    document.getElementById('result').innerText = array.push(checkboxes[i].value)
+    console.log(checkboxes);
 }
 </script>
 <script>
@@ -210,29 +207,16 @@ export default {
                 {name:'Confit apple, thick fir-smoked cream, gingerbread crumble, cider vinaigrette'}
             ],
             Dessert:[],
-    Items: [
-        {
-            name: 'Apple'
-        }, 
-        {
-            name: 'Orange'
-        }, 
-        {
-            name: 'Mengo'
-        }, 
-        {
-            name: 'Cherry'
-        }
-    ],            
-    user: {
-        fruitCollection: []
-    },
+    
         }
     },
     methods:{
         ...mapActions(['signIn','signOut']),
         userSignOut(){
-            this.$store.dispatch('logout');
+            // this.$store.dispatch('logout');
+            localStorage.removeItem('token');
+            this.$store.dispatch('user',null);
+            this.$router.push('/index');
             this.$store.dispatch('gSignin/signOut');
         }
     },
@@ -241,7 +225,8 @@ export default {
             signedIn: state => state.gSignin.signedIn,
             profile: state => state.gSignin.profile
         }),
-        ...mapGetters(['isSignIn']),
+        // ...mapGetters(['isSignIn']),
+        ...mapGetters(['user'])
     }
 }
 </script>

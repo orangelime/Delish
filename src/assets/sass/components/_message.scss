@@ -1,0 +1,17 @@
+.message-error{
+    background: $color-pink-dark-2;
+}
+.message-text{
+    color: $color-white;
+}
+.message-success{
+    background:$color-primary-dark;
+}
+.slide-enter-active {
+    -webkit-animation:moveInBottom .5s;
+    animation:moveInBottom .5s;
+}
+.slide-leave-active {
+    -webkit-animation:moveInBottom .5s reverse;
+    animation:moveInBottom .5s reverse;
+}

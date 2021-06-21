@@ -17,7 +17,7 @@ import Main from '@/components/Main'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import Popup from '@/components/Popup'
-
+import axios from 'axios'
 
 
 export default {
@@ -28,6 +28,18 @@ export default {
     Footer,
     Navigation,
     Popup
+  },
+  // data(){
+  //     return{
+  //         user:null
+  //     }
+  // },
+  async created(){
+      const response = await axios.get('user');
+      // this.user = response.data;
+      this.$store.dispatch('user',response.data);
+      // console.log(response);
   }
+    
 }
 </script>

@@ -7,7 +7,7 @@
         <div class="navigation__background">&nbsp;</div>
         <nav class="navigation__nav">
             <ul class="navigation__list">
-                <li class="navigation__item" v-if="isSignIn || signedIn"><a href="#" class="navigation__link"  @click="userSignOut"><span>01</span>Sign out</a></li>
+                <li class="navigation__item" v-if="user || signedIn"><a href="#" class="navigation__link"  @click="userSignOut"><span>01</span>Sign out</a></li>
                 <li class="navigation__item" v-else><router-link to="/signin" class="navigation__link"  @click="selectNavItem"><span>01</span>Sign in</router-link></li>
                 <li class="navigation__item"><router-link to="/signup" class="navigation__link"  @click="selectNavItem"><span>02</span>Sign up</router-link></li>
                 <li class="navigation__item"><a href="#about" class="navigation__link"  @click="selectNavItem"><span>03</span>About Delish</a></li>
@@ -32,7 +32,9 @@ export default {
             document.getElementById("navi-toggle").checked = false;
         },
         userSignOut(){
-            this.$store.dispatch('logout');
+            // this.$store.dispatch('logout');
+            localStorage.removeItem('token');
+            this.$store.dispatch('user',null);
             this.$store.dispatch('gSignin/signOut');
             this.selectNavItem();
         }
@@ -42,7 +44,8 @@ export default {
             signedIn: state => state.gSignin.signedIn,
             profile: state => state.gSignin.profile
         }),
-        ...mapGetters(['isSignIn']),
+        // ...mapGetters(['isSignIn']),
+        ...mapGetters(['user'])
     }
 }
 </script>

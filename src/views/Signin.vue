@@ -8,6 +8,11 @@
         <div class="signin__content">
             <div class="signin__left">
                 <form action="#" class="form" @submit.prevent="userSignIn">
+                    <!-- error -->
+                    <transition name="slide">
+                        <Error v-if="error" :error="error"></Error>
+                    </transition>
+                    
                     <div class="u-center-text u-margin-bottom-medium">
                         <h2 class="heading-secondary">
                             Start Booking now
@@ -28,6 +33,12 @@
                             Don't have an account?
                             <router-link to="/signup">Sign Up</router-link>
                         </h3>
+                    </div>
+                    <div class="form__text u-margin-bottom-medium">
+                        <router-link to="/forgot"><h3 class="heading-tertiary--normal">
+                            Forgot password?
+                            
+                        </h3></router-link>
                     </div>
                     <div class="form__group">
                         <button type="submit" class="btn btn--signin btn--signin-1">
@@ -61,6 +72,7 @@
 </template>
 
 <script>
+import Error from '@/components/Error';
 import axios from 'axios';
 import { mapState } from 'vuex';
 
@@ -69,8 +81,12 @@ export default {
     data(){
         return {
             email:'',
-            password:''
+            password:'',
+            error:''
         }
+    },
+    components:{
+        Error
     },
     computed: {
         ...mapState({
@@ -87,13 +103,18 @@ export default {
         //     }
         // },
         async userSignIn(){
-            const response = await axios.post('login',{
-                email:this.email,
-                password:this.password
-            })
-            // console.log(response);
-            localStorage.setItem('token',response.data.token);
-            this.$router.push('/index');
+            try{
+                const response = await axios.post('login',{
+                    email:this.email,
+                    password:this.password
+                });
+                // console.log(response);
+                localStorage.setItem('token',response.data.token);
+                this.$store.dispatch('user',response.data.user);
+                this.$router.push('/index');
+            }catch(e){
+                this.error = 'Invalid username/password!'
+            }
         },
         googleSignIn(){
             this.$store.dispatch('gSignin/signIn');

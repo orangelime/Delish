@@ -202,13 +202,10 @@ body {
     background: #55c57a; }
 
 .btn--signin {
-  width: 90%;
+  width: 100%;
   color: #fff;
   text-align: center;
   line-height: 2.7rem; }
-  @media only screen and (max-width: 75em) {
-    .btn--signin {
-      width: 100%; } }
   .btn--signin-1 {
     background: #f39939; }
   .btn--signin-2 {
@@ -566,12 +563,9 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid #c5c1c1;
     border-radius: 10rem;
-    width: 90%;
+    width: 100%;
     transition: all .3s;
     display: block; }
-    @media only screen and (max-width: 75em) {
-      .form__input {
-        width: 100%; } }
     .form__input:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
@@ -623,6 +617,23 @@ body {
   .form__text {
     width: 90%;
     text-align: center; }
+
+.message-error {
+  background: #a8027f; }
+
+.message-text {
+  color: #fff; }
+
+.message-success {
+  background: #28b485; }
+
+.slide-enter-active {
+  -webkit-animation: moveInBottom .5s;
+  animation: moveInBottom .5s; }
+
+.slide-leave-active {
+  -webkit-animation: moveInBottom .5s reverse;
+  animation: moveInBottom .5s reverse; }
 
 /*header.vue*/
 .header {
@@ -1368,11 +1379,14 @@ body {
     .shoppingcart__welcome-box--right {
       flex: 1; }
     .shoppingcart__welcome-box--left {
-      flex: 0 0 46%; }
+      flex: 0 0 50%; }
+      .shoppingcart__welcome-box--left-1 {
+        text-align: right; }
   .shoppingcart__welcome-text {
     font-size: 1.6rem;
     color: #fff;
-    font-weight: bold; }
+    font-weight: bold;
+    padding-top: 2px; }
     .shoppingcart__welcome-text-1 {
       text-transform: uppercase; }
     @media only screen and (max-width: 37.5em) {

@@ -6,6 +6,8 @@ import Index from '../views/index'
 import Shoppingcart from '@/views/Shoppingcart'
 import Signin from '@/views/Signin'
 import Signup from '@/views/Signup'
+import ForgotPassword from '@/views/ForgotPassword'
+import ResetPassword from '@/views/ResetPassword'
 
 Vue.use(VueRouter)
 
@@ -33,6 +35,16 @@ const routes = [
     path: '/shoppingcart',
     name: 'Shoppingcart',
     component: Shoppingcart
+  },
+  {
+    path: '/forgot',
+    name: 'ForgotPassword',
+    component: ForgotPassword
+  },
+  {
+    path: '/reset/:token',
+    name: 'ResetPassword',
+    component:ResetPassword
   }
 ]
 
