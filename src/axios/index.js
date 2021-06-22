@@ -1,10 +1,13 @@
 import axios from 'axios'
+import store from "@/store";
+import router from '@/router';
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 
 // const token = localStorage.getItem('token');
 
 // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; 
+
 
 axios.interceptors.request.use(function(config) {
     config.headers.common = {

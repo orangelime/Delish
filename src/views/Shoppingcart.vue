@@ -9,13 +9,24 @@
                 </router-link>
             </div>
             <div class="shoppingcart__welcome-content">
-                <div class="shoppingcart__welcome-box" v-if="user || signedIn">
+                <!-- google signIn -->
+                <div class="shoppingcart__welcome-box" v-if="signedIn">
                     <div class="shoppingcart__welcome-box--left">
                         <div class="shoppingcart__welcome-text">
                             <p class="shoppingcart__welcome-text-1">Welcome &emsp;</p>
-                            <!-- <p class="shoppingcart__welcome-text-2">{{profile.getEmail()}}</p> -->
+                            <p class="shoppingcart__welcome-text-2">{{profile.getEmail()}}</p>
+                        </div>
+                    </div>
+                    <div class="shoppingcart__welcome-box--right">
+                        <a class="btn btn--white btn--animated" @click="userSignOut">Sign out</a>
+                    </div>
+                </div>
+                <!-- user signin -->
+                <div class="shoppingcart__welcome-box" v-else-if="user"> 
+                    <div class="shoppingcart__welcome-box--left">
+                        <div class="shoppingcart__welcome-text">
+                            <p class="shoppingcart__welcome-text-1">Welcome &emsp;</p>
                             <p class="shoppingcart__welcome-text-2">{{user.name}}</p>
-
                         </div>
                     </div>
                     <div class="shoppingcart__welcome-box--right">

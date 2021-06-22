@@ -34,11 +34,21 @@ export default {
   //         user:null
   //     }
   // },
-  async created(){
-      const response = await axios.get('user');
-      // this.user = response.data;
-      this.$store.dispatch('user',response.data);
-      // console.log(response);
+  // async created(){
+  //     const response = await axios.get('user');
+  //     // this.user = response.data;
+  //     this.$store.dispatch('user',response.data);
+  //     console.log(response.data);
+  // },
+  mounted(){
+    axios
+        .get( "user")
+        .then(response => {
+          this.$store.dispatch('user',response.data);
+        })
+        .catch(() => {
+          localStorage.removeItem("token");
+        });
   }
     
 }
