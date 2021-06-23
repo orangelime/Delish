@@ -41,7 +41,8 @@ export default {
   //     console.log(response.data);
   // },
   mounted(){
-    axios
+    if (localStorage.getItem("token")) {
+      axios
         .get( "user")
         .then(response => {
           this.$store.dispatch('user',response.data);
@@ -49,6 +50,10 @@ export default {
         .catch(() => {
           localStorage.removeItem("token");
         });
+
+    }
+
+    
   }
     
 }

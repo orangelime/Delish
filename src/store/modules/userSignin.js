@@ -17,8 +17,8 @@ const mutations = {
 }
 
 const actions = {
-    user(context,user){
-        context.commit('user',user);
+    user({commit},user){
+        commit('user',user);
     }
 }
 
