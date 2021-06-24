@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from "@/store";
 import router from '@/router';
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
 // const token = localStorage.getItem('token');
 
@@ -17,6 +17,20 @@ if (error.response.status === 401) {
 }
     return Promise.reject(error)
 })
+
+// axios.interceptors.response.use(
+//     response => response,
+//     error => {
+//         if (error.response.status === 422) {
+//             store.commit("setErrors", error.response.data.errors);
+//         } else if (error.response.status === 401) {
+//             store.commit('user', null);
+//             localStorage.removeItem("token");
+//         } else {
+//             return Promise.reject(error);
+//         }
+//     }
+// );
 
 axios.interceptors.request.use((config) =>{
     config.headers.common = {
