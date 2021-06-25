@@ -177,22 +177,22 @@ body {
   .btn--white::after {
     background: #e78319; }
 
-.btn--pink {
+.btn--1 {
   background: #f758cf;
   color: #fff; }
-  .btn--pink::after {
+  .btn--1::after {
     background: #a8027f; }
 
-.btn--yellow {
+.btn--2 {
   background: #ffb900;
   color: #fff; }
-  .btn--yellow::after {
+  .btn--2::after {
     background: #ff7730; }
 
-.btn--purple {
+.btn--3 {
   background: #b420fa;
   color: #fff; }
-  .btn--purple::after {
+  .btn--3::after {
     background: #8545e2; }
 
 .btn--green {
