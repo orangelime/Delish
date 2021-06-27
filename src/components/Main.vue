@@ -50,7 +50,6 @@
                 </div>
             </div>
         </section>
-
         <Features></Features>
         <Menus></Menus>
         <Stories></Stories>

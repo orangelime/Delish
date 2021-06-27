@@ -1,13 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-//import Home from '../views/Home'
-//import Popup from '../views/Popup'
-import Index from '../views/index'
-import Shoppingcart from '@/views/Shoppingcart'
-import Signin from '@/views/Signin'
-import Signup from '@/views/Signup'
-import ForgotPassword from '@/views/ForgotPassword'
-import ResetPassword from '@/views/ResetPassword'
+
 
 Vue.use(VueRouter)
 
@@ -18,40 +11,40 @@ const routes = [
   },
   {
     path: '/index',
-    name: 'Index',
-    component: Index,
+    name: 'index',
+    component: () => import(/* webpackChunkName: "home" */ "../views/index.vue")
   },
   {
     path: '/signin',
     name: 'Signin',
-    component: Signin
+    component: () => import("../views/Signin.vue")
   },
   {
     path: '/signup',
     name: 'Signup',
-    component: Signup
+    component: () => import("../views/Signup.vue")
   },
   {
     path: '/shoppingcart',
     name: 'Shoppingcart',
-    component: Shoppingcart
+    component: () => import("../views/Shoppingcart.vue")
   },
   {
     path: '/forgot',
     name: 'ForgotPassword',
-    component: ForgotPassword
+    component: () => import("../views/ForgotPassword.vue")
   },
   {
     path: '/reset/:token',
     name: 'ResetPassword',
-    component:ResetPassword
+    component:() => import("../views/ResetPassword.vue")
   }
 ]
 
 
 
 const router = new VueRouter({
-  //mode: 'history',
+ // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
@@ -59,9 +52,9 @@ const router = new VueRouter({
 
 //router guard
 router.beforeEach((to, from, next)=>{
-  const isLogin = localStorage.getItem('token') == 'ImSignin' ;
+  const isLogin = localStorage.getItem('token');
   if( isLogin ){
-    next('/');
+    return next();
   } else {
     if( to.path !== '/signin')
       next()
@@ -69,5 +62,7 @@ router.beforeEach((to, from, next)=>{
       next();
   }
 });
+
+
 
 export default router

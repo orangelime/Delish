@@ -1445,10 +1445,7 @@ body {
       border-radius: 10rem;
       font-size: 1.6rem;
       background: #c5c1c1;
-      width: 90%;
+      width: 100%;
       color: #000;
       text-align: center;
       line-height: 2.7rem; }
-      @media only screen and (max-width: 75em) {
-        .shoppingcart__table .warning-box {
-          width: 100%; } }

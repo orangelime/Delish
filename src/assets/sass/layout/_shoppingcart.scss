@@ -160,14 +160,10 @@
             border-radius: 10rem;
             font-size: $default-font-size;
             background:$color-grey-light-3;
-            width: 90%;
+            width: 100%;
             color: $color-black;
             text-align: center;
             line-height: 2.7rem;
-
-            @include respond(tab-land){
-                width: 100%;
-            }
         }
     }
 }
