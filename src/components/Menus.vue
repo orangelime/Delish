@@ -6,7 +6,7 @@
             </h2>
         </div>
         <div class="row">
-            <div class="col-1-of-3" v-for="menu in menus" :key="menu.id">
+            <div class="col-1-of-3" v-for="(menu,index) in menus" :key="menu.id">
                 <div class="card">
                     <div class="card__side card__side--front">
                         <div :class="[`card__picture card__picture--${menu.id}`]">
@@ -32,10 +32,10 @@
                         <div class="card__cta">
                             <div class="card__price-box">
                                 <p class="card__price-only">Only</p>
-                                <p class="card__price-value">{{menu.price}}</p>
+                                <p class="card__price-value">${{menu.price}}</p>
                             </div>
                             <!-- 如果已signin就直接進入購物車，未signin就跳出popup -->
-                            <router-link to="/shoppingcart" :class="[`btn btn--${menu.id}`]" @click="selectMenu">Book now!</router-link>
+                            <a :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
                             <!-- <a href="#popup" :class="[`btn btn--${menu.id}`]">Book now!</a> -->
                         </div>
                     </div>
@@ -54,12 +54,10 @@ import { mapActions,mapGetters } from 'vuex';
 export default {
     name:"Menus",
     methods: {
-        selectMenu(){
-            this.price.push({
-                name:this.name,
-                price:this.price
-            })
-        }
+        handleAddToCart(index){
+            this.$store.commit('menuList',this.$store.getters.menus[index].price);
+        },
+
     },
     computed:{
         ...mapGetters(['menus'])

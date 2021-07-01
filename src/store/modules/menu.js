@@ -3,8 +3,8 @@ const state = {
         {
             id:1,
             name:'family gathering',
-            price:'$888',
-            count:1,
+            price:888,
+            
             details:{
                 people:'Up to 6 people',
                 appetizers:'Choice of 1 appetizers',
@@ -16,8 +16,8 @@ const state = {
         {
             id:2,
             name:'commnunity gathering',
-            price:'$1688',
-            count:2,
+            price:1688,
+            
             details:{
                 people:'Up to 12 people',
                 appetizers:'Choice of 2 appetizers',
@@ -29,8 +29,8 @@ const state = {
         {
             id:3,
             name:'large dinner party',
-            price:'$2,688',
-            count:3,
+            price:2688,
+            
             details:{
                 people:'Up to 20 people',
                 appetizers:'Choice of 3 appetizers',
@@ -39,20 +39,37 @@ const state = {
                 dessert:'Choice of 3 dessert'
             }
         }
-    ]
-    
+    ],
+
+    menuList:null
 }
 
 const getters = {
-    menus:state => state.menus
+    menus:state => state.menus,
+    menuList:(state) => {
+        return state.menuList
+        //console.log(state.menuList)
+    }
 }
 
 const mutations = {
+    addCart(state,index){
+        
+        
+        console.log(state.menus.filter((item,index,array) => {return index}));
 
+        // state.menus[index].price;
+        // console.log(price);
+        // console.log(state.price);
+    },
+    menuList(state,menuList){
+        state.menuList = menuList;
+        console.log(menuList)
+    }
 }
 
 const actions = {
-
+    
 }
 
 export default{

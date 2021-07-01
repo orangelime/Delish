@@ -3,17 +3,6 @@ import store from "@/store";
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
-// axios.interceptors.response.use((response) => {
-//     return response
-// }, (error) => {
-//     //console.log(error.response.data)
-// if (error.response.status === 401) {
-//     store.commit('user',null);
-//     localStorage.removeItem("token");
-// }
-//     return Promise.reject(error)
-// })
-
 axios.interceptors.response.use(
     response => response,
     error => {

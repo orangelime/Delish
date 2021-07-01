@@ -145,7 +145,7 @@
                                         <td class="title">Total Price</td>
                                     </tr>
                                     <tr>
-                                        <td>$888</td>
+                                        <td>{{menuList}}</td>
                                     </tr>
                                 </tbody>
                                 <tbody>
@@ -177,14 +177,14 @@
     </div>
 </template>
 <script>
-var array = []
-var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+// var array = []
+// var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
 
-for (var i = 0; i < checkboxes.length; i++) {
+// for (var i = 0; i < checkboxes.length; i++) {
     
-    document.getElementById('result').innerText = array.push(checkboxes[i].value)
-    console.log(checkboxes);
-}
+//     document.getElementById('result').innerText = array.push(checkboxes[i].value)
+//     console.log(checkboxes);
+// }
 </script>
 <script>
 import { mapState,mapActions,mapGetters } from 'vuex';
@@ -218,7 +218,7 @@ export default {
                 {name:'Confit apple, thick fir-smoked cream, gingerbread crumble, cider vinaigrette'}
             ],
             Dessert:[],
-    
+            
         }
     },
     methods:{
@@ -237,7 +237,7 @@ export default {
             profile: state => state.gSignin.profile
         }),
         // ...mapGetters(['isSignIn']),
-        ...mapGetters(['user'])
+        ...mapGetters(['user','menus','menuList'])
     }
 }
 </script>
