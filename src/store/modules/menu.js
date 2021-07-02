@@ -46,25 +46,13 @@ const state = {
 
 const getters = {
     menus:state => state.menus,
-    menuList:(state) => {
-        return state.menuList
-        //console.log(state.menuList)
-    }
+    menuList:state => state.menuList
 }
 
 const mutations = {
-    addCart(state,index){
-        
-        
-        console.log(state.menus.filter((item,index,array) => {return index}));
-
-        // state.menus[index].price;
-        // console.log(price);
-        // console.log(state.price);
-    },
     menuList(state,menuList){
         state.menuList = menuList;
-        console.log(menuList)
+        // console.log(menuList)
     }
 }
 

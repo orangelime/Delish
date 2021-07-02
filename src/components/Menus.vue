@@ -35,8 +35,14 @@
                                 <p class="card__price-value">${{menu.price}}</p>
                             </div>
                             <!-- 如果已signin就直接進入購物車，未signin就跳出popup -->
-                            <a :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
-                            <!-- <a href="#popup" :class="[`btn btn--${menu.id}`]">Book now!</a> -->
+                            <div v-if="signedIn || user">
+                                <router-link to="/shoppingcart">
+                                    <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
+                                </router-link>
+                            </div>
+                            <div v-else>
+                                <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,7 +55,7 @@
 </template>
 
 <script>
-import { mapActions,mapGetters } from 'vuex';
+import { mapState,mapGetters } from 'vuex';
 
 export default {
     name:"Menus",
@@ -60,7 +66,10 @@ export default {
 
     },
     computed:{
-        ...mapGetters(['menus'])
+        ...mapState({
+            signedIn: state => state.gSignin.signedIn,
+        }),
+        ...mapGetters(['user','menus'])
     }
     
 }

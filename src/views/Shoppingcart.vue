@@ -145,7 +145,7 @@
                                         <td class="title">Total Price</td>
                                     </tr>
                                     <tr>
-                                        <td>{{menuList}}</td>
+                                        <td v-if="menuList">${{menuList}}</td>
                                     </tr>
                                 </tbody>
                                 <tbody>
