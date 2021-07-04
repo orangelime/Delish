@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import uSignin from './modules/uSignin'
+//import uSignin from './modules/uSignin'
 import gSignin from './modules/gSignin'
 import userSignin from './modules/userSignin'
 import errors from './modules/errors'
@@ -11,7 +11,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules:{
-    uSignin,
+    //uSignin,
     gSignin,
     userSignin,
     errors,
