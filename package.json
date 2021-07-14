@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 3001",
+    "serve": "vue-cli-service serve --port 3000",
     "build": "vue-cli-service build",
     "watch:sass": "node-sass src/assets/sass/app.scss src/assets/css/style.css -w",
     "devserver": "live-server",
