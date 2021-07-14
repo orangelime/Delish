@@ -9,8 +9,10 @@
 
 
 export default {
-  name: 'App'
-  
+  name: 'App',
+  // created() {
+  //   console.log(process.env.VUE_APP_API_URL)
+  // },
 }
 
 </script>

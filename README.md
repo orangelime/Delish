@@ -1,19 +1,18 @@
-# vue-outdoor
+vue-delish 私廚網站
 
-## Project setup
+Project setup
 ```
-npm install
-```
+Run npm install
 
-### Compiles and hot-reloads for development
-```
-npm run start
 ```
 
-### Compiles and minifies for production
+Compiles and hot-reloads for development
 ```
-npm run all
+Run npm run start
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Compiles and minifies for production
+```
+Run npm run all
+```
+
