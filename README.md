@@ -3,7 +3,6 @@ vue-delish 私廚網站
 Project setup
 ```
 Run npm install
-
 ```
 
 Compiles and hot-reloads for development

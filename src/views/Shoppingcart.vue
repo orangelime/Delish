@@ -139,8 +139,6 @@
                                     <tr v-for="dessert in Dessert" :key="dessert.id">
                                         <td>{{dessert}}</td>
                                     </tr>
-                                </tbody>
-                                <tbody>
                                     <tr>
                                         <td class="title">Total Price</td>
                                     </tr>
@@ -148,6 +146,14 @@
                                         <td v-if="menuList">${{menuList}}</td>
                                     </tr>
                                 </tbody>
+                                <!-- <tbody>
+                                    <tr>
+                                        <td class="title">Total Price</td>
+                                    </tr>
+                                    <tr>
+                                        <td v-if="menuList">${{menuList}}</td>
+                                    </tr>
+                                </tbody> -->
                                 <tbody>
                                     <tr>
                                         <td class="title">A change to make to the menu?</td>
