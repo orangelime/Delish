@@ -35,7 +35,7 @@
                                 <p class="card__price-value">${{menu.price}}</p>
                             </div>
                             <!-- 如果已signin就直接進入購物車，未signin就跳出popup -->
-                            <div v-if="signedIn || user">
+                            <div v-if="signedIn || isSignIn">
                                 <router-link to="/shoppingcart">
                                     <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
                                 </router-link>
@@ -69,7 +69,8 @@ export default {
         ...mapState({
             signedIn: state => state.gSignin.signedIn,
         }),
-        ...mapGetters(['user','menus'])
+        // ...mapGetters(['user','menus'])
+        ...mapGetters(['isSignIn','menus'])
     }
     
 }

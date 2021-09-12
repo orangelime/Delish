@@ -1,3 +1,4 @@
+// 自訂密碼登入
 import router from '@/router'
 
 const state = {

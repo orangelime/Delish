@@ -29,32 +29,22 @@ export default {
     Navigation,
     Popup
   },
-  // data(){
-  //     return{
-  //         user:null
-  //     }
-  // },
-  // async created(){
-  //     const response = await axios.get('user');
-  //     // this.user = response.data;
-  //     this.$store.dispatch('user',response.data);
-  //     console.log(response.data);
-  // },
-  mounted(){
-    if (localStorage.getItem("token")) {
-      axios
-        .get( "user")
-        .then(response => {
-          this.$store.dispatch('user',response.data);
-        })
-        .catch(() => {
-          localStorage.removeItem("token");
-        });
+  //laravle後臺登入
+  // mounted(){
+  //   if (localStorage.getItem("token")) {
+  //     axios
+  //       .get( "user")
+  //       .then(response => {
+  //         this.$store.dispatch('user',response.data);
+  //       })
+  //       .catch(() => {
+  //         localStorage.removeItem("token");
+  //       });
 
-    }
+  //   }
 
     
-  }
+  // }
     
 }
 </script>

@@ -1,3 +1,4 @@
+// laravel後臺登入
 const state = {
     user:null
 }

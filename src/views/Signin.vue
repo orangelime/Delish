@@ -95,27 +95,27 @@ export default {
         })
     },
     methods:{
-        // userSignIn(){
-        //     if(this.email == '1234@email.com' && this.password == '1234'){
-        //         this.$store.dispatch('login');
-        //     }else{
-        //         alert("login failed");
-        //     }
-        // },
-        async userSignIn(){
-            try{
-                const response = await axios.post('login',{
-                    email:this.email,
-                    password:this.password
-                });
-                // console.log(response);
-                localStorage.setItem('token',response.data.token);
-                this.$store.dispatch('user',response.data.user);
-                this.$router.push('/index');
-            }catch(e){
-                this.error = 'Invalid username/password!'
+        userSignIn(){
+            if(this.email == '1234@email.com' && this.password == '1234'){
+                this.$store.dispatch('login');
+            }else{
+                alert("login failed");
             }
         },
+        // async userSignIn(){
+        //     try{
+        //         const response = await axios.post('login',{
+        //             email:this.email,
+        //             password:this.password
+        //         });
+        //         // console.log(response);
+        //         localStorage.setItem('token',response.data.token);
+        //         this.$store.dispatch('user',response.data.user);
+        //         this.$router.push('/index');
+        //     }catch(e){
+        //         this.error = 'Invalid username/password!'
+        //     }
+        // },
         googleSignIn(){
             this.$store.dispatch('gSignin/signIn');
         }

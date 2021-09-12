@@ -22,11 +22,11 @@
                     </div>
                 </div>
                 <!-- user signin -->
-                <div class="shoppingcart__welcome-box" v-else-if="user"> 
+                <div class="shoppingcart__welcome-box" v-else-if="isSignIn"> 
                     <div class="shoppingcart__welcome-box--left">
                         <div class="shoppingcart__welcome-text">
                             <p class="shoppingcart__welcome-text-1">Welcome &emsp;</p>
-                            <p class="shoppingcart__welcome-text-2">{{user.name}}</p>
+                            <p class="shoppingcart__welcome-text-2">1234@email.com</p>
                         </div>
                     </div>
                     <div class="shoppingcart__welcome-box--right">
@@ -230,9 +230,9 @@ export default {
     methods:{
         ...mapActions(['signIn','signOut']),
         userSignOut(){
-            // this.$store.dispatch('logout');
+            this.$store.dispatch('logout');
             localStorage.removeItem('token');
-            this.$store.dispatch('user',null);
+            // this.$store.dispatch('user',null);  laravel後臺登入
             this.$router.push('/index');
             this.$store.dispatch('gSignin/signOut');
         }
@@ -242,8 +242,8 @@ export default {
             signedIn: state => state.gSignin.signedIn,
             profile: state => state.gSignin.profile
         }),
-        // ...mapGetters(['isSignIn']),
-        ...mapGetters(['user','menus','menuList'])
+        // ...mapGetters(['user','menus','menuList'])  laravel後臺登入
+        ...mapGetters(['isSignIn','menus','menuList'])
     }
 }
 </script>
