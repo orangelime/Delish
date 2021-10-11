@@ -104,6 +104,10 @@
         }
     }
 
+    input:checked + label{
+        text-decoration: line-through;
+    }
+
     label{
         font-size:$default-font-size;
         text-align: left;

@@ -1405,6 +1405,8 @@ body {
     @media only screen and (max-width: 37.5em) {
       .shoppingcart__detail {
         line-height: 5rem; } }
+  .shoppingcart input:checked + label {
+    text-decoration: line-through; }
   .shoppingcart label {
     font-size: 1.6rem;
     text-align: left;
