@@ -1,5 +1,9 @@
 vue-delish 私廚網站
 
+Live Demo 
+
+https://vue-delish.herokuapp.com/#/index
+
 Project setup
 ```
 Run npm install
