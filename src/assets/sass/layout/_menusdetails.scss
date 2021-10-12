@@ -1,0 +1,44 @@
+.menusdetails{
+    background: $color-grey-dark;
+    color:$color-white;
+    
+    //nav
+    &__nav{
+        top: 0;
+        position: relative;
+        width: 100%;
+        z-index: 1;
+        transition: all .5s;
+        background: $color-grey-light-2;
+    }
+    //當網下滑時固定nav
+    // .fixed-nav nav{
+    //     position:fixed;
+    //     background: rgba(0,0,0,.5);
+    // }
+
+    &__list{
+        display: flex;
+        list-style: none;
+        text-align: center;
+    }
+    &__name{
+        font-size: 1.5rem;
+        line-height: 10rem;
+        cursor: pointer;
+        list-style: none;
+        flex: 1;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+    //card
+    &__content{
+        padding: 20rem 0;
+    }
+}
+

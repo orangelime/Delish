@@ -729,6 +729,10 @@ body {
   .heading-secondary--1 {
     display: block;
     font-size: 2.5rem; }
+  .heading-secondary--2 {
+    display: block;
+    font-size: 2rem;
+    background-image: linear-gradient(to right, #ccaef7, #5a08ca); }
 
 .heading-tertiary {
   font-size: 1.6rem;
@@ -775,6 +779,33 @@ body {
   @media only screen and (max-width: 56.25em) {
     .section-menus {
       padding: 20rem 0 10rem 0; } }
+
+.menusdetails {
+  background: #777;
+  color: #fff; }
+  .menusdetails__nav {
+    top: 0;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    transition: all .5s;
+    background: #eee; }
+  .menusdetails__list {
+    display: flex;
+    list-style: none;
+    text-align: center; }
+  .menusdetails__name {
+    font-size: 1.5rem;
+    line-height: 10rem;
+    cursor: pointer;
+    list-style: none;
+    flex: 1;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center; }
+  .menusdetails__content {
+    padding: 20rem 0; }
 
 .section-stories {
   padding: 15rem 0;
