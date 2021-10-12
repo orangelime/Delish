@@ -2,7 +2,7 @@
     <section class="section-menus" id="menus">
         <div class="u-center-text u-margin-bottom-big">
             <h2 class="heading-secondary">
-                Most popular menus
+                Most popular set menus
             </h2>
         </div>
         <div class="row">
@@ -36,7 +36,7 @@
                             </div>
                             <!-- 如果已signin就直接進入購物車，未signin就跳出popup -->
                             <div v-if="signedIn || isSignIn">
-                                <router-link to="/shoppingcart">
+                                <router-link to="/menusdetails">
                                     <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
                                 </router-link>
                             </div>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="u-center-text u-margin-bottom-huge">
-            <a href="#" class="btn btn--white">Discover all menus</a>
+            <router-link to="/menusdetails" class="btn btn--white">Discover all menus</router-link>
         </div>
     </section>
 </template>
