@@ -54,8 +54,8 @@
         <nav class="menusdetails__nav">
             <ul class="menusdetails__list">
                 <li class="menusdetails__name">
-                    <a href="#" class="heading-secondary heading-secondary--1">
-                        Appetizer
+                    <a href="#" class="details heading-secondary heading-secondary--1">
+                        Starter
                     </a>
                 </li>
                 <li class="menusdetails__name">
@@ -111,42 +111,26 @@
         <!-- menus details -->
         <div class="menusdetails__content">
             <div class="row">
-                <div class="col-1-of-3" v-for="(menu,index) in menus" :key="menu.id">
+                <div class="col-1-of-3 col-1-of-3--1" v-for="meal in mealDetails" :key="meal.idMeal">
                     <div class="card">
                         <div class="card__side card__side--front">
-                            <div :class="[`card__picture card__picture--${menu.id}`]">
-                                &nbsp;
+                            <div class="card__img-box">
+                                <img :src=meal.strMealThumb alt="">
                             </div>
-                            <h4 class="card__heading">
-                                <span :class="[`card__heading-span card__heading-span--${menu.id}`]">
-                                    {{menu.name}}
+                            <h4 class="card__heading card__heading--1">
+                                <span class="card__heading-span card__heading-span--2">
+                                    {{meal.strMeal}}
                                 </span>
                             </h4>
-                            <div class="card__details">
-                                <ul>
-                                    <li>{{menu.details.people}}</li>
-                                    <li>{{menu.details.appetizers}}</li>
-                                    <li>{{menu.details.salad}}</li>
-                                    <li>{{menu.details.main_course}}</li>
-                                    <li>{{menu.details.dessert}}</li>
-                                </ul>
-                            </div>
-                            
-                        </div>
-                        <div :class="[`card__side card__side--back card__side--back-${menu.id}`]">
-                            <div class="card__cta">
-                                <div class="card__price-box">
-                                    <p class="card__price-only">Only</p>
-                                    <p class="card__price-value">${{menu.price}}</p>
-                                </div>
+                            <div class="card__cta card__cta--1">
                                 <!-- 如果已signin就直接進入購物車，未signin就跳出popup -->
                                 <div v-if="signedIn || isSignIn">
                                     <router-link to="/menusdetails">
-                                        <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
+                                        <a href="#popup" class="btn btn--2" @click="handleAddToCart(index)">Book now!</a>
                                     </router-link>
                                 </div>
                                 <div v-else>
-                                    <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
+                                    <a href="#popup" class="btn btn--2" @click="handleAddToCart(index)">Book now!</a>
                                 </div>
                             </div>
                         </div>
@@ -162,10 +146,28 @@
     </div>
 </template>
 <script>
+    document.querySelector('.details').innerText.toLowerCase()
+
+
+</script>
+<script>
 import { mapState,mapActions,mapGetters } from 'vuex';
 
 export default {
     name:'MenusDetails',
+    data(){
+        return{
+            mealDetails:[]
+        }
+    },
+    created() {
+        const dataUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=dessert';
+        fetch(dataUrl)
+            .then(response => response.json())
+            .then(data => {
+                this.mealDetails = data.meals
+            })
+    },
     methods:{
         ...mapActions(['signIn','signOut']),
         userSignOut(){
@@ -174,7 +176,8 @@ export default {
             // this.$store.dispatch('user',null);  laravel後臺登入
             this.$router.push('/index');
             this.$store.dispatch('gSignin/signOut');
-        }
+        },
+        
     },
     computed:{
         ...mapState({
@@ -182,7 +185,8 @@ export default {
             profile: state => state.gSignin.profile
         }),
         // ...mapGetters(['user','menus','menuList'])  laravel後臺登入
-        ...mapGetters(['isSignIn','menus','menuList'])
+        ...mapGetters(['isSignIn','menus','menuList']),
+        
     }
 }
 </script>
