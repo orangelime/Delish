@@ -54,7 +54,7 @@
         <nav class="menusdetails__nav">
             <ul class="menusdetails__list">
                 <li class="menusdetails__name">
-                    <a href="#" class="details heading-secondary heading-secondary--1">
+                    <a href="#" ref="menuName" class="heading-secondary heading-secondary--1">
                         Starter
                     </a>
                 </li>
@@ -146,9 +146,17 @@
     </div>
 </template>
 <script>
-    document.querySelector('.details').innerText.toLowerCase()
-
-
+    // 先拿到nav的名稱
+    // let category = document.querySelector('.details').innerText.toLowerCase()
+    // 然後根據名稱fetch API
+    // methods: getMealData(category){
+    //     const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
+    //     fetch(dataUrl)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             this.mealDetails = data.meals
+    //         })
+    // }
 </script>
 <script>
 import { mapState,mapActions,mapGetters } from 'vuex';
@@ -157,16 +165,12 @@ export default {
     name:'MenusDetails',
     data(){
         return{
-            mealDetails:[]
+            mealDetails:[],
+            
         }
     },
     created() {
-        const dataUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=dessert';
-        fetch(dataUrl)
-            .then(response => response.json())
-            .then(data => {
-                this.mealDetails = data.meals
-            })
+        this.getMealData('lamb');
     },
     methods:{
         ...mapActions(['signIn','signOut']),
@@ -176,6 +180,20 @@ export default {
             // this.$store.dispatch('user',null);  laravel後臺登入
             this.$router.push('/index');
             this.$store.dispatch('gSignin/signOut');
+        },
+        
+        getMealData(categories){
+            //categories = this.$refs.menuName.innerText.toLowerCase();
+            //console.log(categories)
+            const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categories}`;
+            fetch(dataUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if(data.meals){
+                        this.mealDetails = data.meals;
+                    }
+                    
+                })
         },
         
     },
