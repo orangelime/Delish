@@ -823,6 +823,13 @@ body {
   .menusdetails__content {
     padding: 20rem 0; }
 
+.fixed-nav {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: sticky;
+  background: rgba(0, 0, 0, 0.3); }
+
 .section-stories {
   padding: 15rem 0;
   position: relative; }

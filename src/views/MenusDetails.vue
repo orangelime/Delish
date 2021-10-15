@@ -146,19 +146,6 @@
     </div>
 </template>
 <script>
-    // 先拿到nav的名稱
-    // let category = document.querySelector('.details').innerText.toLowerCase()
-    // 然後根據名稱fetch API
-    // methods: getMealData(category){
-    //     const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
-    //     fetch(dataUrl)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             this.mealDetails = data.meals
-    //         })
-    // }
-</script>
-<script>
 import { mapState,mapActions,mapGetters } from 'vuex';
 
 export default {
@@ -168,6 +155,9 @@ export default {
             mealDetails:[],
             
         }
+    },
+    mounted(){
+        window.addEventListener('scroll',this.fixedNav,true);
     },
     created() {
         this.getMealData('lamb');
@@ -181,21 +171,29 @@ export default {
             this.$router.push('/index');
             this.$store.dispatch('gSignin/signOut');
         },
-        
-        getMealData(categories){
-            //categories = this.$refs.menuName.innerText.toLowerCase();
-            //console.log(categories)
+        async getMealData(categories){
             const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categories}`;
-            fetch(dataUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if(data.meals){
-                        this.mealDetails = data.meals;
-                    }
-                    
-                })
+            try{
+                const response = await fetch(dataUrl);
+                //console.log(response);
+                const data = await response.json();
+                this.mealDetails = data.meals;
+            }catch(e){
+                console.log(e);
+            }
         },
-        
+        fixedNav(){
+            const nav = document.querySelector('.menusdetails__nav');
+            const topOfNav = nav.offsetTop;
+            
+            if(window.scrollY+100 >= topOfNav){
+                //console.log(window.scrollY >= topOfNav)
+                nav.classList.add('fixed-nav');
+            }else{
+                // document.body.style.paddingTop = '1px';
+                nav.classList.remove('fixed-nav');
+            }
+        }
     },
     computed:{
         ...mapState({
