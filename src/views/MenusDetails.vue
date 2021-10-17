@@ -53,9 +53,9 @@
         <!-- menus category -->
         <nav class="menusdetails__nav">
             <ul class="menusdetails__list">
-                <li class="menusdetails__name">
-                    <a href="#" ref="menuName" class="heading-secondary heading-secondary--1">
-                        Starter
+                <li class="menusdetails__name" v-for="(category,index) in categories.slice(0,1)" :key="index">
+                    <a href="#" class="heading-secondary heading-secondary--1" @click="menuName(category)">
+                        {{category.type}}
                     </a>
                 </li>
                 <li class="menusdetails__name">
@@ -63,13 +63,13 @@
                         Main Course
                     </a>
                 </li>
-                    <!-- <ul class="menusdetails__category">
-                        <li class="menusdetails__name menusdetails__name-1">
-                            <a href="#" class="heading-secondary heading-secondary--2">
-                                Chicken
+                    <ul class="menusdetails__category">
+                        <li class="menusdetails__name menusdetails__name-1" v-for="(category,index) in categories.slice(1,8)" :key="index">
+                            <a href="#" class="heading-secondary heading-secondary--2" @click="menuName(category)">
+                                {{category.type}}
                             </a>
                         </li>
-                        <li class="menusdetails__name menusdetails__name-1">
+                        <!-- <li class="menusdetails__name menusdetails__name-1">
                             <a href="#" class="heading-secondary heading-secondary--2">
                                 Salmon
                             </a>
@@ -98,11 +98,11 @@
                             <a href="#" class="heading-secondary heading-secondary--2">
                                 Lamb
                             </a>
-                        </li>
-                    </ul> -->
-                <li class="menusdetails__name">
-                    <a href="#" class="heading-secondary heading-secondary--1">
-                        Dessert
+                        </li> -->
+                    </ul>
+                <li class="menusdetails__name" v-for="(category,index) in categories.slice(8,9)" :key="index+1">
+                    <a href="#" class="heading-secondary heading-secondary--1" @click="menuName(category)">
+                        {{category.type}}
                     </a>
                 </li>
             </ul>
@@ -153,7 +153,17 @@ export default {
     data(){
         return{
             mealDetails:[],
-            
+            categories:[
+                        {type:'starter'},
+                        {type:'chicken'},
+                        {type:'salmon'},
+                        {type:'beef'},
+                        {type:'pork'},
+                        {type:'seafood'},
+                        {type:'pasta'},
+                        {type:'lamb'},
+                        {type:'dessert'}
+            ]
         }
     },
     mounted(){
@@ -171,8 +181,8 @@ export default {
             this.$router.push('/index');
             this.$store.dispatch('gSignin/signOut');
         },
-        async getMealData(categories){
-            const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categories}`;
+        async getMealData(category){
+            const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category.type}`;
             try{
                 const response = await fetch(dataUrl);
                 //console.log(response);
@@ -182,6 +192,10 @@ export default {
                 console.log(e);
             }
         },
+        menuName(category){
+            console.log(category.type)
+            this.getMealData(category);
+        },
         fixedNav(){
             const nav = document.querySelector('.menusdetails__nav');
             const topOfNav = nav.offsetTop;
@@ -190,7 +204,6 @@ export default {
                 //console.log(window.scrollY >= topOfNav)
                 nav.classList.add('fixed-nav');
             }else{
-                // document.body.style.paddingTop = '1px';
                 nav.classList.remove('fixed-nav');
             }
         }
