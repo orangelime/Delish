@@ -53,8 +53,8 @@
         <!-- menus category -->
         <nav class="menusdetails__nav">
             <div class="menusdetails__dropdownBackground">
-                <span class="menusdetails__arrow"></span>
-            </div>
+                    <span class="menusdetails__arrow"></span>
+                </div>
 
             <ul class="menusdetails__list">
                 <li class="menusdetails__name" v-for="(category,index) in categories.slice(0,1)" :key="index">
@@ -62,47 +62,19 @@
                         {{category.type}}
                     </a>
                 </li>
+                
                 <li class="menusdetails__name">
-                    <a href="#" class="heading-secondary heading-secondary--1" @click="dropdownCategory()">
+                    <a href="#" class="heading-secondary heading-secondary--1" @click="dropdownMaincourse()" v-clickoutside="closeDropdown">
                         Main Course
                     </a>
                 </li>
+                
                     <ul class="menusdetails__category dropdown">
                         <li class="menusdetails__name menusdetails__name-1" v-for="(category,index) in categories.slice(1,8)" :key="index">
                             <a href="#" class="heading-secondary heading-secondary--2" @click="menuName(category)">
                                 {{category.type}}
                             </a>
                         </li>
-                        <!-- <li class="menusdetails__name menusdetails__name-1">
-                            <a href="#" class="heading-secondary heading-secondary--2">
-                                Salmon
-                            </a>
-                        </li>
-                        <li class="menusdetails__name menusdetails__name-1">
-                            <a href="#" class="heading-secondary heading-secondary--2">
-                                Beef
-                            </a>
-                        </li>
-                        <li class="menusdetails__name menusdetails__name-1">
-                            <a href="#" class="heading-secondary heading-secondary--2">
-                                Pork
-                            </a>
-                        </li>
-                        <li class="menusdetails__name menusdetails__name-1">
-                            <a href="#" class="heading-secondary heading-secondary--2">
-                                Seafood
-                            </a>
-                        </li>
-                        <li class="menusdetails__name menusdetails__name-1">
-                            <a href="#" class="heading-secondary heading-secondary--2">
-                                Pasta
-                            </a>
-                        </li>
-                        <li class="menusdetails__name menusdetails__name-1">
-                            <a href="#" class="heading-secondary heading-secondary--2">
-                                Lamb
-                            </a>
-                        </li> -->
                     </ul>
                 <li class="menusdetails__name" v-for="(category,index) in categories.slice(8,9)" :key="index+1">
                     <a href="#" class="heading-secondary heading-secondary--1" @click="menuName(category)">
@@ -176,6 +148,27 @@ export default {
     created() {
         this.getMealData(this.categories[1]);
     },
+    //close dropdown
+    directives:{
+        clickoutside:{
+            bind(el,binding,vnode){
+                function documentHandler(e){
+                if(el.contains(e.target)){
+                    return false;
+                }
+                if(binding.expression){
+                    binding.value(e)
+                }
+                }
+                el._vueClickOutside_ = documentHandler;
+                document.addEventListener('click',documentHandler);
+            },
+            unbind(el,binding){
+                document.removeEventListener('click',el._vueClickOutside_);
+                delete el._vueClickOutside_;
+            }
+        }
+    },
     methods:{
         ...mapActions(['signIn','signOut']),
         userSignOut(){
@@ -197,9 +190,9 @@ export default {
             }
         },
         menuName(category){
-            console.log(category.type)
             this.getMealData(category);
         },
+        //sticky nav
         fixedNav(){
             const nav = document.querySelector('.menusdetails__nav');
             const topOfNav = nav.offsetTop;
@@ -211,18 +204,17 @@ export default {
                 nav.classList.remove('fixed-nav');
             }
         },
-        dropdownCategory(){
-            //console.log('enter')
+        dropdownMaincourse(){
             //console.log(this)
             const background = document.querySelector('.menusdetails__dropdownBackground');
             const nav = document.querySelector('.menusdetails__nav');
-            const category = document.querySelector('.menusdetails__category');
+            const item = document.querySelector('.menusdetails__category');
 
-            category.classList.add('trigger-enter');
+            item.classList.add('trigger-enter');
             
             setTimeout(() => {
-                if(category.classList.contains('trigger-enter')){
-                    category.classList.add('trigger-enter-active');
+                if(item.classList.contains('trigger-enter')){
+                    item.classList.add('trigger-enter-active');
                 }
             },150);
             background.classList.add('open');
@@ -245,8 +237,15 @@ export default {
             background.style.setProperty('width',`${coords.width}px`);
             background.style.setProperty('height',`${coords.height}px`);
             background.style.setProperty('transform',`translate(${coords.left}px,${coords.top}px)`);
-            
+        },
+        closeDropdown(){
+            const background = document.querySelector('.menusdetails__dropdownBackground');
+            const item = document.querySelector('.menusdetails__category');
+
+            item.classList.remove('trigger-enter','trigger-enter-active');
+            background.classList.remove('open');
         }
+
     },
     computed:{
         ...mapState({

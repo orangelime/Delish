@@ -56,6 +56,8 @@
         justify-content: center;
         align-items: center;
 
+        position: relative;
+
         &-1{
             display: block;
         }
@@ -72,16 +74,25 @@
         transition: all 0.5s;
         transform: translateY(100px);
         will-change: transform;
-        min-width:300px;
+        min-width:200px;
         -moz-column-count: 2;
         -moz-column-gap: 1em;
         -webkit-column-count: 2;
         -webkit-column-gap: 1em;
         column-count: 2;
         column-gap: 1em;
-        // background: $color-grey-light-2;
-        //border-radius: 10px;
-        //box-shadow: 0 50px 100px rgba(50,50,93,.1), 0 15px 35px rgba(50,50,93,.15), 0 5px 15px rgba(0,0,0,.1);
+
+        @include respond(tab-land){ 
+            left:35%;
+        }
+        @include respond(tab-port){
+            
+            left: 33%;//1rem = 8px 8/16
+        }
+        @include respond(phone){
+            top: -10rem;
+            left: 29%//1rem = 4.8px 4.8/16
+        }
 
         &.trigger-enter{
             display: block;
