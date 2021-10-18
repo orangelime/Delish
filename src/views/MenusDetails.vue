@@ -52,6 +52,10 @@
 
         <!-- menus category -->
         <nav class="menusdetails__nav">
+            <div class="menusdetails__dropdownBackground">
+                <span class="menusdetails__arrow"></span>
+            </div>
+
             <ul class="menusdetails__list">
                 <li class="menusdetails__name" v-for="(category,index) in categories.slice(0,1)" :key="index">
                     <a href="#" class="heading-secondary heading-secondary--1" @click="menuName(category)">
@@ -59,11 +63,11 @@
                     </a>
                 </li>
                 <li class="menusdetails__name">
-                    <a href="#" class="heading-secondary heading-secondary--1">
+                    <a href="#" class="heading-secondary heading-secondary--1" @click="dropdownCategory()">
                         Main Course
                     </a>
                 </li>
-                    <ul class="menusdetails__category">
+                    <ul class="menusdetails__category dropdown">
                         <li class="menusdetails__name menusdetails__name-1" v-for="(category,index) in categories.slice(1,8)" :key="index">
                             <a href="#" class="heading-secondary heading-secondary--2" @click="menuName(category)">
                                 {{category.type}}
@@ -170,7 +174,7 @@ export default {
         window.addEventListener('scroll',this.fixedNav,true);
     },
     created() {
-        this.getMealData('lamb');
+        this.getMealData(this.categories[1]);
     },
     methods:{
         ...mapActions(['signIn','signOut']),
@@ -206,6 +210,42 @@ export default {
             }else{
                 nav.classList.remove('fixed-nav');
             }
+        },
+        dropdownCategory(){
+            //console.log('enter')
+            //console.log(this)
+            const background = document.querySelector('.menusdetails__dropdownBackground');
+            const nav = document.querySelector('.menusdetails__nav');
+            const category = document.querySelector('.menusdetails__category');
+
+            category.classList.add('trigger-enter');
+            
+            setTimeout(() => {
+                if(category.classList.contains('trigger-enter')){
+                    category.classList.add('trigger-enter-active');
+                }
+            },150);
+            background.classList.add('open');
+            
+            //將背景移到navItem後面
+            const dropdown = document.querySelector('.dropdown');
+            // console.log(dropdown)
+            const dropdownCoords = dropdown.getBoundingClientRect();
+            // console.log(dropdownCoords);//DOMRect
+            const navCoords = nav.getBoundingClientRect();
+            // console.log(navCoords)
+            
+            const coords = {
+                height:dropdownCoords.height,
+                width:dropdownCoords.width,
+                top:dropdownCoords.top - navCoords.top,
+                left:dropdownCoords.left - navCoords.left
+            }
+
+            background.style.setProperty('width',`${coords.width}px`);
+            background.style.setProperty('height',`${coords.height}px`);
+            background.style.setProperty('transform',`translate(${coords.left}px,${coords.top}px)`);
+            
         }
     },
     computed:{
