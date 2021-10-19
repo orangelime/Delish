@@ -89,7 +89,7 @@
             <div class="row">
                 <div class="col-1-of-3 col-1-of-3--1" v-for="meal in mealDetails" :key="meal.idMeal">
                     <div class="card">
-                        <div class="card__side card__side--front">
+                        <div class="card__side card__side--details">
                             <div class="card__img-box">
                                 <img :src=meal.strMealThumb alt="">
                             </div>
@@ -100,14 +100,15 @@
                             </h4>
                             <div class="card__cta card__cta--1">
                                 <!-- 如果已signin就直接進入購物車，未signin就跳出popup -->
-                                <div v-if="signedIn || isSignIn">
-                                    <router-link to="/menusdetails">
-                                        <a href="#popup" class="btn btn--2" @click="handleAddToCart(index)">Book now!</a>
-                                    </router-link>
+                                <!-- <div v-if="signedIn || isSignIn">
+                                    
+                                    <router-link to="/menusdetails" class="btn btn--2" @click="handleAddToCart(index)">Book now!</router-link>
+                                    
                                 </div>
                                 <div v-else>
                                     <a href="#popup" class="btn btn--2" @click="handleAddToCart(index)">Book now!</a>
-                                </div>
+                                </div> -->
+                                <a href="#" class="btn btn--2">get details</a>
                             </div>
                         </div>
                     </div>
@@ -132,12 +133,12 @@ export default {
             categories:[
                         {type:'starter'},
                         {type:'chicken'},
-                        {type:'salmon'},
                         {type:'beef'},
                         {type:'pork'},
                         {type:'seafood'},
                         {type:'pasta'},
                         {type:'lamb'},
+                        {type:'goat'},
                         {type:'dessert'}
             ]
         }

@@ -6,7 +6,7 @@
             </h2>
         </div>
         <div class="row">
-            <div class="col-1-of-3" v-for="(menu,index) in menus" :key="menu.id">
+            <div class="col-1-of-3" v-for="menu in menus" :key="menu.id">
                 <div class="card">
                     <div class="card__side card__side--front">
                         <div :class="[`card__picture card__picture--${menu.id}`]">
@@ -35,14 +35,16 @@
                                 <p class="card__price-value">${{menu.price}}</p>
                             </div>
                             <!-- 如果已signin就直接進入購物車，未signin就跳出popup -->
-                            <div v-if="signedIn || isSignIn">
+                            <!--<div v-if="signedIn || isSignIn">
                                 <router-link to="/menusdetails">
                                     <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
                                 </router-link>
                             </div>
                             <div v-else>
                                 <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
-                            </div>
+                            </div>-->
+                            <router-link to="/menusdetails" :class="[`btn btn--${menu.id}`]">view menus</router-link>
+
                         </div>
                     </div>
                 </div>

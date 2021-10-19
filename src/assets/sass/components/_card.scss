@@ -20,7 +20,7 @@
         box-shadow: 0 1.5rem 4rem rgba($color-black,.15);
         overflow: hidden;
 
-        &--front{
+        &--front,&--details{
             background-color: $color-white;
         }
 
@@ -40,15 +40,15 @@
     }
     
     /*.card:hover .card__side*/
-    // &:hover &__side--front{
-    //     transform: rotateY(-180deg);
+    &:hover &__side--front{
+        transform: rotateY(-180deg);
         
-    // }
+    }
 
-    // &:hover &__side--back{
-    //     transform: rotateY(0);
+    &:hover &__side--back{
+        transform: rotateY(0);
         
-    // }
+    }
 
     /*front side styling*/
     &__picture{
@@ -101,9 +101,19 @@
 
         &--1{
             font-size: 1.8rem;
-            top: 30.5rem;
+            top: 27.4rem;
             text-align: right;
             right: 0;
+
+            @include respond(tab-land){ 
+                top: 25.6rem;
+            }
+            @include respond(tab-port){
+                top: 37.4rem;
+            }
+            @include respond(phone){
+                top: 35.5rem;
+            }
         }
     }
 
