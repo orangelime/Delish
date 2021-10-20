@@ -19,98 +19,40 @@
     &__content{
         opacity: 1;
         transform: translate(-50%,-50%) scale(1);
-
-
         display: flex;
         flex-direction: column;
-        //justify-content: space-between;
-        //align-items: center;
-        height: 80%;
+        //height: 90%; //隨著材料的變化變換高度
         @include absCenter;
         width: 50%;
-        //backdrop-filter: blur(90px);
         background-color: none;
-        //background-color: $color-white;
-        
-        //box-shadow: 0 2rem 4rem rgba($color-black,.2);
         border-radius: 3px;
-        
-        
-        //transform: translate(-50%,-50%) scale(0.25);
         transition: all .5s .2s;
+
+        @include respond(phone){
+            &__content{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                //height: 85%;
+                width: 50%;
+            }
+        }
     }
-    /*&__left{
-        flex:1;
-        width: 100%;
-    }*/
+    
     &__dialog{
         flex:1;
         height: 100%;
         width: 100%;
         background-color: rgba($color-grey-light-3,.9);
     }
+    
     &__button{
         margin: 5rem 1rem 0 1rem;
         display: flex;
         justify-content: space-between;
-
-        &-right{
-            flex:1;
-            padding-left: 3rem;
-
-            @include respond(phone){
-                padding-left: 1rem;
-            }            
-        }
-        &-left{
-            flex:1;
-        }
     }
 
-    //原code
-    /*&__content{
-        @include absCenter;
-        width: 75%;
-        height: 30rem;
-        background-color: $color-white;
-        box-shadow: 0 2rem 4rem rgba($color-black,.2);
-        border-radius: 3px;
-        display: table;
-        overflow: hidden;
-        opacity: 0;
-        transform: translate(-50%,-50%) scale(0.25);
-        transition: all .5s .2s;
-    }*/
-    
-    /*&__left{
-        width: 50%;
-        display: table-cell;
-        vertical-align: middle;
-        padding: 3rem 5rem;
-    }*/
-    /*&__img{
-        display: block;
-        width: 100%;
-        
-    }*/
-    /*&__text{
-        font-size: 1.4rem;
-        margin-bottom: 4rem;
-
-        column-count: 2;
-        column-gap: 4rem;//1rem=14px
-        column-rule: 1px solid $color-grey-light-2;
-        -moz-hyphens:auto;
-        -ms-hyphens:auto;
-        -webkit-hyphens:auto;
-        hyphens:auto;
-    }*/
-    /*&__right{
-        width: 50%;
-        display: table-cell;
-        background-image: linear-gradient(to right bottom,$color-white,$color-yellow-dark);
-        position: relative;
-    }*/
     &__box{
         display: flex;
         flex-direction: column;
@@ -124,7 +66,7 @@
         padding-top: 3rem;
     }
     &__logo{
-        height: 10rem;
+        height: 18rem;
         
     }
     &__text{
@@ -133,72 +75,17 @@
         width: 90%;
     }
     &__heading{
-        font-size: 2.8rem;
-        font-weight: 900;
-        text-transform: uppercase;
+        font-size: 1.6rem;
+        font-weight: 600;
         color: $color-red-dark-1;
         text-align: center;
-        padding-bottom: 3rem;
-        border-bottom: 2px solid $color-red-dark-1;
+        padding-bottom: 1rem;
+        //border-bottom: 2px solid $color-red-dark-1;
 
         &-1{
-            border: none;
-            padding-top: 3rem;
-        }
-    }
-    /*&__logo-box,&__logo{
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        transform: translate(-50%,-30%);
-    }
-    &__logo-box{
-        background-color: $color-white;
-        transition: all .3s;
-
-        @supports (not (clip-path:polygon(0 0))) and (-webkit-clip-path:polygon(0 0)){
-            border-radius: 50%;
-            height: 23rem;
-            width: 23rem;
-        }
-
-        @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
-            -webkit-clip-path:polygon(25% 37.5%, 50% 25% , 75% 37.5% , 75% 62.5% , 50% 75% , 25% 65.5%);
-            clip-path:polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
-            height: 23rem;
-            width: 20rem;
-        }
-        
-        &:hover{
-            height: 23rem;
-            width: 23rem;
-            border-radius: 50%;
-
-            @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
-                -webkit-clip-path:circle(50% at 50% 50%);
-                clip-path:circle(50% at 50% 50%);
-            }
-        }
-    }*/
-
-    @include respond(phone){
-        &__content{
-            display: flex;
-            //flex-direction: column-reverse;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            //height: 85%;
-            height: 50%;
-            width: 50%;
-        }
-        &__left{
-            flex:1;
-            width: 100%;
-        }
-        &__right{
-            flex:1;
-            width: 100%;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
         }
     }
 

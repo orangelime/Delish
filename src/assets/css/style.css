@@ -216,9 +216,6 @@ body {
   color: #fff;
   width: 100%;
   text-align: center; }
-  .btn--popup-1 {
-    background: #fff;
-    color: #f39939; }
   .btn--popup::after {
     background: #e78319; }
 
@@ -1189,87 +1186,7 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 9999;
   opacity: 1;
-  transition: all .3s;
-  /*&__left{
-        flex:1;
-        width: 100%;
-    }*/
-  /*&__content{
-        @include absCenter;
-        width: 75%;
-        height: 30rem;
-        background-color: $color-white;
-        box-shadow: 0 2rem 4rem rgba($color-black,.2);
-        border-radius: 3px;
-        display: table;
-        overflow: hidden;
-        opacity: 0;
-        transform: translate(-50%,-50%) scale(0.25);
-        transition: all .5s .2s;
-    }*/
-  /*&__left{
-        width: 50%;
-        display: table-cell;
-        vertical-align: middle;
-        padding: 3rem 5rem;
-    }*/
-  /*&__img{
-        display: block;
-        width: 100%;
-        
-    }*/
-  /*&__text{
-        font-size: 1.4rem;
-        margin-bottom: 4rem;
-
-        column-count: 2;
-        column-gap: 4rem;//1rem=14px
-        column-rule: 1px solid $color-grey-light-2;
-        -moz-hyphens:auto;
-        -ms-hyphens:auto;
-        -webkit-hyphens:auto;
-        hyphens:auto;
-    }*/
-  /*&__right{
-        width: 50%;
-        display: table-cell;
-        background-image: linear-gradient(to right bottom,$color-white,$color-yellow-dark);
-        position: relative;
-    }*/
-  /*&__logo-box,&__logo{
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        transform: translate(-50%,-30%);
-    }
-    &__logo-box{
-        background-color: $color-white;
-        transition: all .3s;
-
-        @supports (not (clip-path:polygon(0 0))) and (-webkit-clip-path:polygon(0 0)){
-            border-radius: 50%;
-            height: 23rem;
-            width: 23rem;
-        }
-
-        @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
-            -webkit-clip-path:polygon(25% 37.5%, 50% 25% , 75% 37.5% , 75% 62.5% , 50% 75% , 25% 65.5%);
-            clip-path:polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
-            height: 23rem;
-            width: 20rem;
-        }
-        
-        &:hover{
-            height: 23rem;
-            width: 23rem;
-            border-radius: 50%;
-
-            @supports (clip-path:polygon(0 0)) or (-webkit-clip-path:polygon(0 0)){
-                -webkit-clip-path:circle(50% at 50% 50%);
-                clip-path:circle(50% at 50% 50%);
-            }
-        }
-    }*/ }
+  transition: all .3s; }
   @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
     .popup {
       -webkit-backdrop-filter: blur(10px);
@@ -1280,7 +1197,6 @@ body {
     transform: translate(-50%, -50%) scale(1);
     display: flex;
     flex-direction: column;
-    height: 80%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1289,6 +1205,13 @@ body {
     background-color: none;
     border-radius: 3px;
     transition: all .5s .2s; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__content__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 50%; } }
   .popup__dialog {
     flex: 1;
     height: 100%;
@@ -1298,14 +1221,6 @@ body {
     margin: 5rem 1rem 0 1rem;
     display: flex;
     justify-content: space-between; }
-    .popup__button-right {
-      flex: 1;
-      padding-left: 3rem; }
-      @media only screen and (max-width: 37.5em) {
-        .popup__button-right {
-          padding-left: 1rem; } }
-    .popup__button-left {
-      flex: 1; }
   .popup__box {
     display: flex;
     flex-direction: column;
@@ -1317,36 +1232,21 @@ body {
     flex: 0 0 15%;
     padding-top: 3rem; }
   .popup__logo {
-    height: 10rem; }
+    height: 18rem; }
   .popup__text {
     flex: 1;
     padding-top: 2rem;
     width: 90%; }
   .popup__heading {
-    font-size: 2.8rem;
-    font-weight: 900;
-    text-transform: uppercase;
+    font-size: 1.6rem;
+    font-weight: 600;
     color: #7f262a;
     text-align: center;
-    padding-bottom: 3rem;
-    border-bottom: 2px solid #7f262a; }
+    padding-bottom: 1rem; }
     .popup__heading-1 {
-      border: none;
-      padding-top: 3rem; }
-  @media only screen and (max-width: 37.5em) {
-    .popup__content {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      height: 50%;
-      width: 50%; }
-    .popup__left {
-      flex: 1;
-      width: 100%; }
-    .popup__right {
-      flex: 1;
-      width: 100%; } }
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase; }
   .popup__close:link, .popup__close:visited {
     color: #777;
     position: absolute;

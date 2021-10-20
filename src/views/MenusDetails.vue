@@ -70,11 +70,11 @@
             </div>
         </div>
         
-        <!-- <Popup :isShow="show" 
+        <Popup :is-show="show" 
                 @hide="hidePopup"
-                :mealDetails="mealDetails"
+                :details="mealDetails"
                 >
-        </Popup> -->
+        </Popup>
         
         
         
@@ -154,6 +154,7 @@ export default {
         },
         //get meal id data getMealDetails($event)
         async getMealDetails(e){
+            this.show = true;
             let id = e.target.getAttribute('data-id');
             //console.log(id);
             const dataUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
@@ -161,7 +162,7 @@ export default {
                 const response = await fetch(dataUrl);
                 //console.log(response);
                 const data = await response.json();
-                this.mealDetails = data.meals[0];
+                this.mealDetails = data.meals;
                 console.log(this.mealDetails);
             }catch(e){
                 console.log(e);
@@ -173,7 +174,7 @@ export default {
         //sticky nav
         fixedNav(){
             const nav = document.querySelector('.menusdetails__nav');
-            const topOfNav = nav.offsetTop;
+            let topOfNav = nav.offsetTop;
             
             if(window.scrollY+100 >= topOfNav){
                 //console.log(window.scrollY >= topOfNav)
