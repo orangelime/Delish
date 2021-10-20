@@ -113,7 +113,7 @@ export default {
     },
     mounted(){
         //sticky nav
-        window.addEventListener('scroll',this.fixedNav,true);
+        document.addEventListener('scroll',this.fixedNav,true);
     },
     created(){
         this.getMealData(this.categories[8]);

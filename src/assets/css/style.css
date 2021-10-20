@@ -816,6 +816,12 @@ body {
     z-index: 1;
     transition: all .5s;
     background: #eee; }
+    .menusdetails__nav.fixed-nav {
+      position: -webkit-sticky;
+      position: -moz-sticky;
+      position: -ms-sticky;
+      position: sticky;
+      background: rgba(0, 0, 0, 0.3); }
   .menusdetails__dropdownBackground {
     width: 100px;
     height: 100px;
@@ -888,13 +894,6 @@ body {
       opacity: 1; }
   .menusdetails__content {
     padding: 20rem 0; }
-
-.fixed-nav {
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: sticky;
-  background: rgba(0, 0, 0, 0.3); }
 
 .section-stories {
   padding: 15rem 0;

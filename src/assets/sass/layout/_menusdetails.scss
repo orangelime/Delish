@@ -11,6 +11,14 @@
         z-index: 1;
         transition: all .5s;
         background: $color-grey-light-2;
+
+        &.fixed-nav{
+            position: -webkit-sticky;
+            position: -moz-sticky;
+            position: -ms-sticky;
+            position: sticky;
+            background: rgba(0,0,0,.3);
+        }
     }
 
     &__dropdownBackground{
@@ -109,10 +117,3 @@
     }
 }
 
-.fixed-nav{
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: sticky;
-    background: rgba(0,0,0,.3);
-}
