@@ -1,54 +1,7 @@
 <template>
     <div class="menusdetails">
-        <!-- signin header -->
-        <div class="shoppingcart__header">
-            <div class="header__logo-box">
-                <router-link to="/index">
-                    <img class="header__logo" src="../assets/img/logo-white.png" alt="Logo">
-                </router-link>
-            </div>
-            <div class="shoppingcart__welcome-content">
-                <!-- google signIn -->
-                <div class="shoppingcart__welcome-box" v-if="signedIn">
-                    <div class="shoppingcart__welcome-box--left">
-                        <div class="shoppingcart__welcome-text">
-                            <p class="shoppingcart__welcome-text-1">Welcome &emsp;</p>
-                            <p class="shoppingcart__welcome-text-2">{{profile.getEmail()}}</p>
-                        </div>
-                    </div>
-                    <div class="shoppingcart__welcome-box--right">
-                        <a class="btn btn--white btn--animated" @click="userSignOut">Sign out</a>
-                    </div>
-                </div>
-                <!-- user signin -->
-                <div class="shoppingcart__welcome-box" v-else-if="isSignIn"> 
-                    <div class="shoppingcart__welcome-box--left">
-                        <div class="shoppingcart__welcome-text">
-                            <p class="shoppingcart__welcome-text-1">Welcome &emsp;</p>
-                            <p class="shoppingcart__welcome-text-2">1234@email.com</p>
-                        </div>
-                    </div>
-                    <div class="shoppingcart__welcome-box--right">
-                        <a class="btn btn--white btn--animated" @click="userSignOut">Sign out</a>
-                    </div>
-                </div>
-                <div class="shoppingcart__welcome-box" v-else>
-                    <div class="shoppingcart__welcome-box--left shoppingcart__welcome-box--left-1">
-                        <h1 class="heading-primary u-margin-top-small">
-                            Welcome
-                        </h1>
-                    </div>
-                    <div class="shoppingcart__welcome-box--right">
-                        <router-link to="/signin" class="btn btn--white btn--animated">Sign in</router-link>
-                    </div>
-                </div>
-            </div>
-            <div class="header__text-box">
-                <h1 class="heading-primary">
-                    <span class="heading-primary--sub u-margin-top-giant">Chose your favorite</span>
-                </h1>
-            </div>
-        </div>
+
+        <CommonHeader :title="title"></CommonHeader>
 
         <!-- menus category -->
         <nav class="menusdetails__nav">
@@ -87,7 +40,7 @@
         <!-- menus details -->
         <div class="menusdetails__content">
             <div class="row">
-                <div class="col-1-of-3 col-1-of-3--1" v-for="meal in mealDetails" :key="meal.idMeal">
+                <div class="col-1-of-3 col-1-of-3--1" v-for="meal in mealCategory" :key="meal.index" :data-id=meal.idMeal>
                     <div class="card">
                         <div class="card__side card__side--details">
                             <div class="card__img-box">
@@ -108,14 +61,21 @@
                                 <div v-else>
                                     <a href="#popup" class="btn btn--2" @click="handleAddToCart(index)">Book now!</a>
                                 </div> -->
-                                <a href="#" class="btn btn--2">get details</a>
+                                <a href="#" :data-id=meal.idMeal class="btn btn--2" @click="getMealDetails($event)">get details</a>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            
+        
+        <!-- <Popup :isShow="show" 
+                @hide="hidePopup"
+                :mealDetails="mealDetails"
+                >
+        </Popup> -->
+        
         
         
         
@@ -123,12 +83,15 @@
     </div>
 </template>
 <script>
-import { mapState,mapActions,mapGetters } from 'vuex';
+import CommonHeader from '@/components/CommonHeader';
+import Popup from '@/components/Popup';
 
 export default {
     name:'MenusDetails',
     data(){
         return{
+            title:'Chose your favorite',
+            mealCategory:[],
             mealDetails:[],
             categories:[
                         {type:'starter'},
@@ -140,14 +103,20 @@ export default {
                         {type:'lamb'},
                         {type:'goat'},
                         {type:'dessert'}
-            ]
+            ],
+            show:false
         }
     },
+    components:{
+        CommonHeader,
+        Popup
+    },
     mounted(){
+        //sticky nav
         window.addEventListener('scroll',this.fixedNav,true);
     },
-    created() {
-        this.getMealData(this.categories[1]);
+    created(){
+        this.getMealData(this.categories[8]);
     },
     //close dropdown
     directives:{
@@ -171,21 +140,29 @@ export default {
         }
     },
     methods:{
-        ...mapActions(['signIn','signOut']),
-        userSignOut(){
-            this.$store.dispatch('logout');
-            localStorage.removeItem('token');
-            // this.$store.dispatch('user',null);  laravel後臺登入
-            this.$router.push('/index');
-            this.$store.dispatch('gSignin/signOut');
-        },
+        //get category data
         async getMealData(category){
             const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category.type}`;
             try{
                 const response = await fetch(dataUrl);
+                const data = await response.json();
+                this.mealCategory = data.meals;
+                //console.log(this.mealCategory);
+            }catch(e){
+                console.log(e);
+            }
+        },
+        //get meal id data getMealDetails($event)
+        async getMealDetails(e){
+            let id = e.target.getAttribute('data-id');
+            //console.log(id);
+            const dataUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+            try{
+                const response = await fetch(dataUrl);
                 //console.log(response);
                 const data = await response.json();
-                this.mealDetails = data.meals;
+                this.mealDetails = data.meals[0];
+                console.log(this.mealDetails);
             }catch(e){
                 console.log(e);
             }
@@ -205,6 +182,7 @@ export default {
                 nav.classList.remove('fixed-nav');
             }
         },
+        //dropdown other category
         dropdownMaincourse(){
             //console.log(this)
             const background = document.querySelector('.menusdetails__dropdownBackground');
@@ -245,18 +223,17 @@ export default {
 
             item.classList.remove('trigger-enter','trigger-enter-active');
             background.classList.remove('open');
+        },
+        showPopup(){
+            this.show = true;
+            //this.getMealDetails(id);
+        },
+        hidePopup() {
+            this.show = false;
         }
 
     },
-    computed:{
-        ...mapState({
-            signedIn: state => state.gSignin.signedIn,
-            profile: state => state.gSignin.profile
-        }),
-        // ...mapGetters(['user','menus','menuList'])  laravel後臺登入
-        ...mapGetters(['isSignIn','menus','menuList']),
-        
-    }
+    
 }
 </script>
 

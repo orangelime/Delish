@@ -1,8 +1,8 @@
 <template>
-    <div class="popup" id="popup">
+    <div class="popup" v-show="isShow">
         <div class="popup__content">
             <div class="popup__dialog">
-                <a href="#" class="popup__close">&times;</a>
+                <a href="#" class="popup__close" @click="closePopup">&times;</a>
                 <div class="popup__box">
                     <div class="popup__logobox">
                         <img class="popup__logo" src="../assets/img/logo-white.png" alt="Logo">
@@ -33,6 +33,20 @@
 <script>
 export default {
     name:'Popup',
+    props:['isShow','mealDetails'],
+    data(){
+        return{
+             
+        }
+    },
+    mounted(){
+        console.log(this.mealDetails)
+    },
+    methods:{
+        closePopup(){
+            this.$emit('hide');
+        }
+    }
 }
 </script>
 
