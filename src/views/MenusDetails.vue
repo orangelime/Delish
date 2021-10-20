@@ -113,7 +113,10 @@ export default {
     },
     mounted(){
         //sticky nav
-        document.addEventListener('scroll',this.fixedNav,true);
+        window.addEventListener('scroll',this.fixedNav,true);
+    },
+    destroyed() {
+        window.removeEventListener('scroll',this.fixedNav,true);
     },
     created(){
         this.getMealData(this.categories[8]);
@@ -174,7 +177,8 @@ export default {
         //sticky nav
         fixedNav(){
             const nav = document.querySelector('.menusdetails__nav');
-            let topOfNav = nav.offsetTop;
+            let topOfNav = nav.scrollTop;
+            console.log(topOfNav)
             
             if(window.scrollY+100 >= topOfNav){
                 //console.log(window.scrollY >= topOfNav)
