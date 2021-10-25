@@ -61,7 +61,7 @@
                                 <div v-else>
                                     <a href="#popup" class="btn btn--2" @click="handleAddToCart(index)">Book now!</a>
                                 </div> -->
-                                <a href="#" :data-id=meal.idMeal class="btn btn--2" @click="getMealDetails($event)">get details</a>
+                                <a href="javascript:void(0);" :data-id=meal.idMeal class="btn btn--2" @click="getMealDetails($event)">get details</a>
                                 
                             </div>
                         </div>
@@ -115,7 +115,7 @@ export default {
         //sticky nav
         window.addEventListener('scroll',this.fixedNav,true);
     },
-    destroyed() {
+    beforeDestroy() {
         window.removeEventListener('scroll',this.fixedNav,true);
     },
     created(){
@@ -166,7 +166,7 @@ export default {
                 //console.log(response);
                 const data = await response.json();
                 this.mealDetails = data.meals;
-                console.log(this.mealDetails);
+                //console.log(this.mealDetails);
             }catch(e){
                 console.log(e);
             }
@@ -177,8 +177,8 @@ export default {
         //sticky nav
         fixedNav(){
             const nav = document.querySelector('.menusdetails__nav');
-            let topOfNav = nav.scrollTop;
-            console.log(topOfNav)
+            let topOfNav = nav.offsetTop;
+            //console.log(topOfNav)
             
             if(window.scrollY+100 >= topOfNav){
                 //console.log(window.scrollY >= topOfNav)
