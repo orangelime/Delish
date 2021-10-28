@@ -40,7 +40,7 @@
         <!-- menus details -->
         <div class="menusdetails__content">
             <div class="row">
-                <div class="col-1-of-3 col-1-of-3--1" v-for="meal in mealCategory" :key="meal.index" :data-id=meal.idMeal>
+                <div class="col-1-of-3 col-1-of-3--1" v-for="meal in mealCategory" :key="meal.index">
                     <div class="card">
                         <div class="card__side card__side--details">
                             <div class="card__img-box">
@@ -69,17 +69,10 @@
                 </div>
             </div>
         </div>
-        
         <Popup :is-show="show" 
                 @hide="hidePopup"
-                :details="mealDetails"
-                >
+                :details="mealDetails">
         </Popup>
-        
-        
-        
-        
-
     </div>
 </template>
 <script>
@@ -115,7 +108,8 @@ export default {
         //sticky nav
         window.addEventListener('scroll',this.fixedNav,true);
     },
-    beforeDestroy() {
+    beforeDestroy(){
+        //destroy sticky nav
         window.removeEventListener('scroll',this.fixedNav,true);
     },
     created(){
@@ -147,10 +141,12 @@ export default {
         async getMealData(category){
             const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category.type}`;
             try{
+                //console.time();
                 const response = await fetch(dataUrl);
                 const data = await response.json();
                 this.mealCategory = data.meals;
                 //console.log(this.mealCategory);
+                //console.timeEnd();
             }catch(e){
                 console.log(e);
             }

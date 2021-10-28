@@ -1,12 +1,25 @@
 <template>
     <div class="popup" v-show="isShow">
         <div class="popup__content">
+            
+            <!-- shopping success icon -->
+            <div class="icon" v-show="showingIcon" :class="{showing:showingIcon}">
+                <div class="icon__content">
+                    <svg class="icon__svg" viewBox="0 0 100 100" width="120" height="120">
+                        <circle class="icon__circle" cx="50" cy="50" r="48"></circle>
+                        <polyline class="icon__check" points="28,53 42,66 74,34"></polyline>
+                    </svg>
+                    <h1 class="popup__heading popup__heading-1">
+                        Add to basket
+                    </h1>
+                </div>
+            </div>
+
             <div class="popup__dialog" v-for="detail in details" :key="detail.id">
                 <a href="#" class="popup__close" @click="closePopup">&times;</a>
                 <div class="popup__box">
                     <div class="popup__logobox">
                         <img class="popup__logo" :src=detail.strMealThumb :alt=detail.strMeal>
-                        <!-- <img class="popup__img" :src=detail.strMealThumb alt=""> -->
                     </div>
                     <div class="popup__text">
                         <h1 class="popup__heading popup__heading-1">
@@ -25,6 +38,7 @@
                         </h1>
                     </div>
                 </div>
+                
             </div>
             <div class="popup__button">
                 <!-- <div class="popup__button-left">
@@ -33,11 +47,12 @@
                 <!-- <div class="popup__button-right">
                     <router-link to="/shoppingcart" class="btn btn--popup btn--popup-1 btn--animated">Add to ShoppingCart</router-link>
                 </div> -->
-                <router-link to="/shoppingcart" class="btn btn--popup btn--animated">Add to ShoppingCart</router-link>
-
+                <button class="btn btn--popup btn--animated" @click="addToBasket">Add to basket</button>
             </div>
+            
         </div>
-    
+
+        
     </div>
 </template>
 
@@ -50,12 +65,19 @@ export default {
     },
     data(){
         return{
-             
+            showingIcon:false
         }
     },
     methods:{
         closePopup(){
             this.$emit('hide');
+        },
+        addToBasket(){
+            this.showingIcon = true;
+            
+            setTimeout(() => {
+                this.showingIcon = false;
+            },800)
         }
     },
     computed:{
