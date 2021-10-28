@@ -9,14 +9,14 @@
                         <circle class="icon__circle" cx="50" cy="50" r="48"></circle>
                         <polyline class="icon__check" points="28,53 42,66 74,34"></polyline>
                     </svg>
-                    <h1 class="popup__heading popup__heading-1">
+                    <h1 class="icon__heading">
                         Add to basket
                     </h1>
                 </div>
             </div>
 
             <div class="popup__dialog" v-for="detail in details" :key="detail.id">
-                <a href="#" class="popup__close" @click="closePopup">&times;</a>
+                <a href="javascript:void(0);" class="popup__close" @click="closePopup">&times;</a>
                 <div class="popup__box">
                     <div class="popup__logobox">
                         <img class="popup__logo" :src=detail.strMealThumb :alt=detail.strMeal>
@@ -74,10 +74,10 @@ export default {
         },
         addToBasket(){
             this.showingIcon = true;
-            
+        
             setTimeout(() => {
                 this.showingIcon = false;
-            },800)
+            },1000)
         }
     },
     computed:{

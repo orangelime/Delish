@@ -69,6 +69,16 @@
         &-1{
             display: block;
         }
+
+        // &-2{
+        //     max-width: 0;
+        //     overflow: hidden;
+        //     // font-weight: 600;
+        //     font-size: 4rem;
+        //     transition: all 1s;
+        //     background: $color-red-dark-1;
+            
+        // }
     }
 
     &__category{
@@ -110,6 +120,40 @@
         }
     }
 
+    &__icon{
+        background-color: $color-red-dark-1;
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        bottom: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black,.1);
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include respond(tab-port){
+            bottom: 4rem;
+            right: 4rem;
+        }
+
+        @include respond(phone){
+            bottom: 3rem;
+            right: 3rem;
+        }
+        
+
+        &-cart{
+            @include respond(tab-port){
+                height: 5rem;
+                width: 5rem;
+            }
+        }
+    }
 
     //card
     &__content{

@@ -6,10 +6,10 @@
     width: 100%;
     z-index: 999;
     //padding: 150px 20px 0;
-    color: $color-red-dark-1;
+    color: $color-pink-light-2;
     font-size: 2rem;
     text-align: center;
-    background: rgba($color-grey-light-3,.9);
+    background: rgba($color-grey-light-3,.95);
     //opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s;
@@ -25,7 +25,7 @@
 
     &__circle,&__check{
       fill: none;
-      stroke: $color-red-dark-1;
+      stroke: $color-pink-light-2;
       stroke-width: 3;
     }
 
@@ -43,20 +43,13 @@
       }
     }
 
-  }
-  @keyframes check {
-    from {
-      stroke-dashoffset: 80;
+    &__heading{
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: $color-pink-light-2;
+      text-align: center;
+      padding-bottom: 1rem;
     }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  @keyframes circle {
-    from {
-      stroke-dashoffset: -300;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
+}
+  

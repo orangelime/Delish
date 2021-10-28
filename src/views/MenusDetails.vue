@@ -15,7 +15,6 @@
                         {{category.type}}
                     </a>
                 </li>
-                
                 <li class="menusdetails__name">
                     <a href="#" class="heading-secondary heading-secondary--1" @click="dropdownMaincourse()" v-clickoutside="closeDropdown">
                         Main Course
@@ -34,6 +33,11 @@
                         {{category.type}}
                     </a>
                 </li>
+                <!-- <li class="menusdetails__name menusdetails__name-2">
+                    <router-link to="/shoppingcart" class="menusdetails__icon-box">
+                        <img class="menusdetails__icon" src="../assets/img/shopping-cart-1x.png">
+                    </router-link>
+                </li> -->
             </ul>
         </nav> 
             
@@ -73,6 +77,12 @@
                 @hide="hidePopup"
                 :details="mealDetails">
         </Popup>
+
+        <div class="menusdetails__icon">
+            <router-link to="/shoppingcart" class="menusdetails__icon-button">
+                <img class="menusdetails__icon-cart" src="../assets/img/shopping-cart-1x.png">
+            </router-link>
+        </div>
     </div>
 </template>
 <script>

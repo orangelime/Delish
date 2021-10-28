@@ -65,6 +65,12 @@ $gutter-horizontal:60px;*/
     opacity: 1;
     transform: translate(0); } }
 
+@keyframes check {
+  from {
+    stroke-dashoffset: 80; }
+  to {
+    stroke-dashoffset: 0; } }
+
 /*全局*/
 *,
 *::after,
@@ -668,10 +674,10 @@ body {
   bottom: 10rem;
   width: 100%;
   z-index: 999;
-  color: #7f262a;
+  color: #f758cf;
   font-size: 2rem;
   text-align: center;
-  background: rgba(197, 193, 193, 0.9);
+  background: rgba(197, 193, 193, 0.95);
   pointer-events: none;
   transition: opacity 0.3s; }
   .icon__content {
@@ -683,7 +689,7 @@ body {
     height: 100%; }
   .icon__circle, .icon__check {
     fill: none;
-    stroke: #7f262a;
+    stroke: #f758cf;
     stroke-width: 3; }
   .icon__check {
     stroke-dasharray: 80 100;
@@ -693,18 +699,13 @@ body {
     pointer-events: auto; }
     .icon.showing .icon__check {
       animation: check 0.3s cubic-bezier(0.5, 0, 0.6, 1) forwards 0.2s; }
-
-@keyframes check {
-  from {
-    stroke-dashoffset: 80; }
-  to {
-    stroke-dashoffset: 0; } }
-
-@keyframes circle {
-  from {
-    stroke-dashoffset: -300; }
-  to {
-    stroke-dashoffset: 0; } }
+  .icon__heading {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #f758cf;
+    text-align: center;
+    padding-bottom: 1rem; }
 
 /*header.vue*/
 .header {
@@ -937,6 +938,33 @@ body {
       display: block; }
     .menusdetails__category.trigger-enter-active {
       opacity: 1; }
+  .menusdetails__icon {
+    background-color: #7f262a;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    bottom: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    z-index: 2000;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    @media only screen and (max-width: 56.25em) {
+      .menusdetails__icon {
+        bottom: 4rem;
+        right: 4rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .menusdetails__icon {
+        bottom: 3rem;
+        right: 3rem; } }
+    @media only screen and (max-width: 56.25em) {
+      .menusdetails__icon-cart {
+        height: 5rem;
+        width: 5rem; } }
   .menusdetails__content {
     padding: 20rem 0; }
 
