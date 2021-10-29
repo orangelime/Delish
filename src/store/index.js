@@ -5,6 +5,7 @@ import gSignin from './modules/gSignin'
 import userSignin from './modules/userSignin'
 import errors from './modules/errors'
 import menu from './modules/menu'
+import meals from './modules/meals'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
     gSignin,
     userSignin,
     errors,
-    menu
+    menu,
+    meals
   }  
   
 })

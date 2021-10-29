@@ -41,12 +41,6 @@
                 
             </div>
             <div class="popup__button">
-                <!-- <div class="popup__button-left">
-                    <router-link to="/signin" class="btn btn--popup btn--animated">SignIn</router-link>
-                </div> -->
-                <!-- <div class="popup__button-right">
-                    <router-link to="/shoppingcart" class="btn btn--popup btn--popup-1 btn--animated">Add to ShoppingCart</router-link>
-                </div> -->
                 <button class="btn btn--popup btn--animated" @click="addToBasket">Add to basket</button>
             </div>
             
@@ -57,6 +51,9 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
+
 export default {
     name:'Popup',
     props:{
@@ -68,10 +65,16 @@ export default {
             showingIcon:false
         }
     },
+    computed:{
+        ...mapState({
+            show: state => state.meals.show,
+        }),
+    },
     methods:{
-        closePopup(){
-            this.$emit('hide');
-        },
+        // closePopup(){
+        //     this.$emit('hide');
+        // },
+        ...mapActions(['closePopup']),
         addToBasket(){
             this.showingIcon = true;
         

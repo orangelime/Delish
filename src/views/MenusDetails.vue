@@ -5,9 +5,11 @@
 
         <!-- menus category -->
         <nav class="menusdetails__nav">
+
+            <!-- dropdown triangle -->
             <div class="menusdetails__dropdownBackground">
-                    <span class="menusdetails__arrow"></span>
-                </div>
+                <span class="menusdetails__arrow"></span>
+            </div>
 
             <ul class="menusdetails__list">
                 <li class="menusdetails__name" v-for="(category,index) in categories.slice(0,1)" :key="index">
@@ -20,7 +22,7 @@
                         Main Course
                     </a>
                 </li>
-                
+                    <!-- dropdown course-->
                     <ul class="menusdetails__category dropdown">
                         <li class="menusdetails__name menusdetails__name-1" v-for="(category,index) in categories.slice(1,8)" :key="index">
                             <a href="#" class="heading-secondary heading-secondary--2" @click="menuName(category)">
@@ -28,16 +30,12 @@
                             </a>
                         </li>
                     </ul>
+
                 <li class="menusdetails__name" v-for="(category,index) in categories.slice(8,9)" :key="index+1">
                     <a href="#" class="heading-secondary heading-secondary--1" @click="menuName(category)">
                         {{category.type}}
                     </a>
                 </li>
-                <!-- <li class="menusdetails__name menusdetails__name-2">
-                    <router-link to="/shoppingcart" class="menusdetails__icon-box">
-                        <img class="menusdetails__icon" src="../assets/img/shopping-cart-1x.png">
-                    </router-link>
-                </li> -->
             </ul>
         </nav> 
             
@@ -56,28 +54,20 @@
                                 </span>
                             </h4>
                             <div class="card__cta card__cta--1">
-                                <!-- 如果已signin就直接進入購物車，未signin就跳出popup -->
-                                <!-- <div v-if="signedIn || isSignIn">
-                                    
-                                    <router-link to="/menusdetails" class="btn btn--2" @click="handleAddToCart(index)">Book now!</router-link>
-                                    
-                                </div>
-                                <div v-else>
-                                    <a href="#popup" class="btn btn--2" @click="handleAddToCart(index)">Book now!</a>
-                                </div> -->
                                 <a href="javascript:void(0);" :data-id=meal.idMeal class="btn btn--2" @click="getMealDetails($event)">get details</a>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <Popup :is-show="show" 
                 @hide="hidePopup"
                 :details="mealDetails">
         </Popup>
 
+        <!-- shopping-cart icon -->
         <div class="menusdetails__icon">
             <router-link to="/shoppingcart" class="menusdetails__icon-button">
                 <img class="menusdetails__icon-cart" src="../assets/img/shopping-cart-1x.png">
@@ -88,14 +78,15 @@
 <script>
 import CommonHeader from '@/components/CommonHeader';
 import Popup from '@/components/Popup';
+import { mapActions, mapState } from 'vuex';
 
 export default {
     name:'MenusDetails',
     data(){
         return{
             title:'Chose your favorite',
-            mealCategory:[],
-            mealDetails:[],
+            //mealCategory:[],
+            // mealDetails:[],
             categories:[
                         {type:'starter'},
                         {type:'chicken'},
@@ -107,23 +98,35 @@ export default {
                         {type:'goat'},
                         {type:'dessert'}
             ],
-            show:false
+            // show:false
         }
     },
     components:{
         CommonHeader,
         Popup
     },
+    computed:{
+        ...mapState({
+            show: state => state.meals.show,
+        }),
+        mealCategory(){
+            return this.$store.state.meals.mealCategory
+        },
+        mealDetails(){
+            return this.$store.state.meals.mealDetails
+        }
+    },
     mounted(){
         //sticky nav
         window.addEventListener('scroll',this.fixedNav,true);
+        
     },
     beforeDestroy(){
         //destroy sticky nav
         window.removeEventListener('scroll',this.fixedNav,true);
     },
     created(){
-        this.getMealData(this.categories[8]);
+        this.$store.dispatch('getMealData',this.categories[8]);
     },
     //close dropdown
     directives:{
@@ -147,36 +150,36 @@ export default {
         }
     },
     methods:{
+        ...mapActions(['getMealData','getMealDetails']),
         //get category data
-        async getMealData(category){
-            const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category.type}`;
-            try{
-                //console.time();
-                const response = await fetch(dataUrl);
-                const data = await response.json();
-                this.mealCategory = data.meals;
-                //console.log(this.mealCategory);
-                //console.timeEnd();
-            }catch(e){
-                console.log(e);
-            }
-        },
-        //get meal id data getMealDetails($event)
-        async getMealDetails(e){
-            this.show = true;
-            let id = e.target.getAttribute('data-id');
-            //console.log(id);
-            const dataUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-            try{
-                const response = await fetch(dataUrl);
-                //console.log(response);
-                const data = await response.json();
-                this.mealDetails = data.meals;
-                //console.log(this.mealDetails);
-            }catch(e){
-                console.log(e);
-            }
-        },
+        // async getMealData(category){
+        //     const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category.type}`;
+        //     try{
+        //         //console.time();
+        //         const response = await fetch(dataUrl);
+        //         const data = await response.json();
+        //         this.mealCategory = data.meals;
+        //         //console.log(this.mealCategory);
+        //         //console.timeEnd();
+        //     }catch(e){
+        //         console.log(e);
+        //     }
+        // },
+        // async getMealDetails(e){
+        //     this.show = true;
+        //     let id = e.target.getAttribute('data-id');
+        //     //console.log(id);
+        //     const dataUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+        //     try{
+        //         const response = await fetch(dataUrl);
+        //         //console.log(response);
+        //         const data = await response.json();
+        //         this.mealDetails = data.meals;
+        //         //console.log(this.mealDetails);
+        //     }catch(e){
+        //         console.log(e);
+        //     }
+        // },
         menuName(category){
             this.getMealData(category);
         },

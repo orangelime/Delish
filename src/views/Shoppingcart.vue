@@ -178,7 +178,6 @@ export default {
                 {name:'Confit apple, thick fir-smoked cream, gingerbread crumble, cider vinaigrette'}
             ],
             Dessert:[],
-            
         }
     },
     components:{
