@@ -66,6 +66,9 @@
 
         <!-- shopping-cart icon -->
         <div class="menusdetails__icon">
+            <div class="menusdetails__icon-length" v-if="mealCart">
+                <h1 class="shoppingcart__welcome-text-1">{{mealCart.length}}</h1>
+            </div>
             <router-link to="/shoppingcart" class="menusdetails__icon-button">
                 <img class="menusdetails__icon-cart" src="../assets/img/shopping-cart-1x.png">
             </router-link>
@@ -75,7 +78,7 @@
 <script>
 import CommonHeader from '@/components/CommonHeader';
 import Popup from '@/components/Popup';
-import { mapActions, mapState , mapGetters } from 'vuex';
+import { mapActions , mapGetters } from 'vuex';
 
 export default {
     name:'MenusDetails',
@@ -100,8 +103,7 @@ export default {
         Popup
     },
     computed:{
-        
-        ...mapGetters(['mealCategory','show'])
+        ...mapGetters(['mealCategory','show','mealCart'])
     },
     mounted(){
         //sticky nav
@@ -195,10 +197,8 @@ export default {
 
             item.classList.remove('trigger-enter','trigger-enter-active');
             background.classList.remove('open');
-        },
-        
-
-    },
+        }
+    }
     
 }
 </script>

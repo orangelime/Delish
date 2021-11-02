@@ -938,6 +938,8 @@ body {
       display: block; }
     .menusdetails__category.trigger-enter-active {
       opacity: 1; }
+  .menusdetails__content {
+    padding: 20rem 0; }
   .menusdetails__icon {
     background-color: #7f262a;
     height: 7rem;
@@ -961,12 +963,22 @@ body {
       .menusdetails__icon {
         bottom: 3rem;
         right: 3rem; } }
-    @media only screen and (max-width: 56.25em) {
-      .menusdetails__icon-cart {
-        height: 5rem;
-        width: 5rem; } }
-  .menusdetails__content {
-    padding: 20rem 0; }
+    .menusdetails__icon-length {
+      background-color: #ffb900;
+      height: 3.5rem;
+      width: 3.5rem;
+      position: absolute;
+      right: -1rem;
+      top: -1rem;
+      border-radius: 50%;
+      -webkit-animation: moveInBottom 1s ease-out;
+      animation: moveInBottom 1s ease-out; }
+    .menusdetails__icon-cart {
+      position: relative; }
+      @media only screen and (max-width: 56.25em) {
+        .menusdetails__icon-cart {
+          height: 5rem;
+          width: 5rem; } }
 
 .section-stories {
   padding: 15rem 0;

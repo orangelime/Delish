@@ -3,33 +3,52 @@ const state = {
     mealCategory:[],
     mealDetails:[],
     show:false,
-    showingIcon:false
+    showingIcon:false,
+    mealCart:[]
 }
 
 const getters = {
     mealCategory:state => state.mealCategory,
     mealDetails:state => state.mealDetails,
     show:state => state.show,
-    showingIcon:state => state.showingIcon
+    showingIcon:state => state.showingIcon,
+    getIngredients:state =>{
+        //console.log(this.details['strIngredient1'])
+        return state.mealDetails.map(el => {
+            //console.log(el.strIngredient1)
+            let result = [];
+            for(let i=1;i<=30;i++){
+                if(el[`strIngredient${i}`] == ''){
+                    break;
+                }
+                result.push(el[`strIngredient${i}`]);
+            }
+            return result;
+        })
+    },
+    mealCart:state => state.mealCart
 }
 
 const mutations = {
-    setmealCategory(state,mealCategory){
+    setmealCategory:(state,mealCategory) => {
         state.mealCategory = mealCategory;
     },
-    setmealDetails(state,mealDetails){
+    setmealDetails:(state,mealDetails) => {
         state.show = true
         state.mealDetails = mealDetails;
     },
-    setclosePopupShow:(state) =>{
+    setclosePopupShow:(state) => {
         state.show = false;
     },
-    setshowingIcon:(state) =>{
+    setshowingIcon:(state) => {
         state.showingIcon = true;
 
         setTimeout(() => {
             state.showingIcon = false;
         },1000)
+    },
+    setaddMealToCart:(state, { mealDetails , quantity}) => {
+        state.mealCart.push({mealDetails,quantity})
     }
     
 }
@@ -63,7 +82,8 @@ const actions = {
     closePopup( { commit } ){
         commit('setclosePopupShow');
     },
-    addToBasket( { commit } ){
+    addMealToCart( { commit } , { mealDetails , quantity}){
+        commit('setaddMealToCart', {mealDetails,quantity});
         commit('setshowingIcon');
     }
 }

@@ -51,46 +51,26 @@
 </template>
 
 <script>
-import { mapActions, mapState , mapGetters } from 'vuex';
-
+import { mapActions , mapGetters } from 'vuex';
 
 export default {
     name:'Popup',
     data(){
         return{
-            //showingIcon:false
+            
         }
-    },
-    computed:{
-        
     },
     methods:{
-        ...mapActions(['closePopup','addToBasket']),
-        // addToBasket(){
-        //     this.showingIcon = true;
-        
-        //     setTimeout(() => {
-        //         this.showingIcon = false;
-        //     },1000)
-        // }
+        ...mapActions(['closePopup']),
+        addToBasket(){
+            this.$store.dispatch('addMealToCart',{
+                mealDetails:this.mealDetails,
+                quantity:1
+            });
+        }
     },
     computed:{
-        ...mapGetters(['mealDetails','show','showingIcon']),
-        getIngredients(){
-            //console.log(this.details['strIngredient1'])
-            return this.mealDetails.map(el => {
-                //console.log(el.strIngredient1)
-                let result = [];
-                for(let i=1;i<=30;i++){
-                    if(el[`strIngredient${i}`] == ''){
-                        break;
-                    }
-                    result.push(el[`strIngredient${i}`]);
-                }
-                return result;
-            })
-        
-        }
+        ...mapGetters(['mealDetails','show','showingIcon','getIngredients']),
     }
 }
 </script>

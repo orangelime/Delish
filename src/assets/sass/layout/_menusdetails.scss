@@ -120,6 +120,12 @@
         }
     }
 
+    //card
+    &__content{
+        padding: 20rem 0;
+    }
+
+    //shopping cart icon
     &__icon{
         background-color: $color-red-dark-1;
         height: 7rem;
@@ -146,8 +152,21 @@
             right: 3rem;
         }
         
+        &-length{
+            background-color: $color-yellow-light-2;
+            height: 3.5rem;
+            width: 3.5rem;
+            position: absolute;
+            right: -1rem;
+            top: -1rem;
+            border-radius: 50%;
+            -webkit-animation:moveInBottom 1s ease-out;
+            animation:moveInBottom 1s ease-out;
+        }
 
         &-cart{
+            position:relative;
+
             @include respond(tab-port){
                 height: 5rem;
                 width: 5rem;
@@ -155,9 +174,6 @@
         }
     }
 
-    //card
-    &__content{
-        padding: 20rem 0;
-    }
+    
 }
 
