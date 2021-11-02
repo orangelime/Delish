@@ -62,10 +62,7 @@
             </div>
         </div>
 
-        <Popup :is-show="show" 
-                @hide="hidePopup"
-                :details="mealDetails">
-        </Popup>
+        <Popup></Popup>
 
         <!-- shopping-cart icon -->
         <div class="menusdetails__icon">
@@ -78,15 +75,13 @@
 <script>
 import CommonHeader from '@/components/CommonHeader';
 import Popup from '@/components/Popup';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState , mapGetters } from 'vuex';
 
 export default {
     name:'MenusDetails',
     data(){
         return{
             title:'Chose your favorite',
-            //mealCategory:[],
-            // mealDetails:[],
             categories:[
                         {type:'starter'},
                         {type:'chicken'},
@@ -98,7 +93,6 @@ export default {
                         {type:'goat'},
                         {type:'dessert'}
             ],
-            // show:false
         }
     },
     components:{
@@ -106,15 +100,8 @@ export default {
         Popup
     },
     computed:{
-        ...mapState({
-            show: state => state.meals.show,
-        }),
-        mealCategory(){
-            return this.$store.state.meals.mealCategory
-        },
-        mealDetails(){
-            return this.$store.state.meals.mealDetails
-        }
+        
+        ...mapGetters(['mealCategory','show'])
     },
     mounted(){
         //sticky nav
@@ -151,35 +138,6 @@ export default {
     },
     methods:{
         ...mapActions(['getMealData','getMealDetails']),
-        //get category data
-        // async getMealData(category){
-        //     const dataUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category.type}`;
-        //     try{
-        //         //console.time();
-        //         const response = await fetch(dataUrl);
-        //         const data = await response.json();
-        //         this.mealCategory = data.meals;
-        //         //console.log(this.mealCategory);
-        //         //console.timeEnd();
-        //     }catch(e){
-        //         console.log(e);
-        //     }
-        // },
-        // async getMealDetails(e){
-        //     this.show = true;
-        //     let id = e.target.getAttribute('data-id');
-        //     //console.log(id);
-        //     const dataUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-        //     try{
-        //         const response = await fetch(dataUrl);
-        //         //console.log(response);
-        //         const data = await response.json();
-        //         this.mealDetails = data.meals;
-        //         //console.log(this.mealDetails);
-        //     }catch(e){
-        //         console.log(e);
-        //     }
-        // },
         menuName(category){
             this.getMealData(category);
         },
@@ -238,13 +196,7 @@ export default {
             item.classList.remove('trigger-enter','trigger-enter-active');
             background.classList.remove('open');
         },
-        showPopup(){
-            this.show = true;
-            //this.getMealDetails(id);
-        },
-        hidePopup() {
-            this.show = false;
-        }
+        
 
     },
     

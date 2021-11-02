@@ -2,12 +2,15 @@
 const state = {
     mealCategory:[],
     mealDetails:[],
-    show:false
-    
+    show:false,
+    showingIcon:false
 }
 
 const getters = {
-
+    mealCategory:state => state.mealCategory,
+    mealDetails:state => state.mealDetails,
+    show:state => state.show,
+    showingIcon:state => state.showingIcon
 }
 
 const mutations = {
@@ -20,6 +23,13 @@ const mutations = {
     },
     setclosePopupShow:(state) =>{
         state.show = false;
+    },
+    setshowingIcon:(state) =>{
+        state.showingIcon = true;
+
+        setTimeout(() => {
+            state.showingIcon = false;
+        },1000)
     }
     
 }
@@ -52,6 +62,9 @@ const actions = {
     },
     closePopup( { commit } ){
         commit('setclosePopupShow');
+    },
+    addToBasket( { commit } ){
+        commit('setshowingIcon');
     }
 }
 

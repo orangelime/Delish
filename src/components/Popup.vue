@@ -1,9 +1,9 @@
 <template>
-    <div class="popup" v-show="isShow">
+    <div class="popup" v-if="show">
         <div class="popup__content">
             
             <!-- shopping success icon -->
-            <div class="icon" v-show="showingIcon" :class="{showing:showingIcon}">
+            <div class="icon" v-if="showingIcon" :class="{showing:showingIcon}">
                 <div class="icon__content">
                     <svg class="icon__svg" viewBox="0 0 100 100" width="120" height="120">
                         <circle class="icon__circle" cx="50" cy="50" r="48"></circle>
@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="popup__dialog" v-for="detail in details" :key="detail.id">
+            <div class="popup__dialog" v-for="detail in mealDetails" :key="detail.id">
                 <a href="javascript:void(0);" class="popup__close" @click="closePopup">&times;</a>
                 <div class="popup__box">
                     <div class="popup__logobox">
@@ -51,42 +51,34 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState , mapGetters } from 'vuex';
 
 
 export default {
     name:'Popup',
-    props:{
-        isShow:Boolean,
-        details:Array
-    },
     data(){
         return{
-            showingIcon:false
+            //showingIcon:false
         }
     },
     computed:{
-        ...mapState({
-            show: state => state.meals.show,
-        }),
+        
     },
     methods:{
-        // closePopup(){
-        //     this.$emit('hide');
-        // },
-        ...mapActions(['closePopup']),
-        addToBasket(){
-            this.showingIcon = true;
+        ...mapActions(['closePopup','addToBasket']),
+        // addToBasket(){
+        //     this.showingIcon = true;
         
-            setTimeout(() => {
-                this.showingIcon = false;
-            },1000)
-        }
+        //     setTimeout(() => {
+        //         this.showingIcon = false;
+        //     },1000)
+        // }
     },
     computed:{
+        ...mapGetters(['mealDetails','show','showingIcon']),
         getIngredients(){
             //console.log(this.details['strIngredient1'])
-            return this.details.map(el => {
+            return this.mealDetails.map(el => {
                 //console.log(el.strIngredient1)
                 let result = [];
                 for(let i=1;i<=30;i++){
