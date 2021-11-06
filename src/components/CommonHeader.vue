@@ -72,7 +72,7 @@ export default {
             profile: state => state.gSignin.profile
         }),
         // ...mapGetters(['user','menus','menuList'])  laravel後臺登入
-        ...mapGetters(['isSignIn','menus','menuList']),
+        ...mapGetters(['isSignIn'])
         
     }
 }

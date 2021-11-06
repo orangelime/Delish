@@ -8,7 +8,7 @@
                 <span class="heading-primary--main">DELISH </span>
                 <span class="heading-primary--sub">delish dream dish</span>
             </h1>
-            <router-link to="/menusdetails" class="btn btn--white btn--animated">view menus</router-link>
+            <router-link to="/meals" class="btn btn--white btn--animated">view menus</router-link>
         </div>
     </header>
 </template>

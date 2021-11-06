@@ -7,33 +7,34 @@
         <div class="navigation__background">&nbsp;</div>
         <nav class="navigation__nav">
             <ul class="navigation__list">
-                <li class="navigation__item" v-if="user || signedIn"><a href="#" class="navigation__link"  @click="userSignOut"><span>01</span>Sign out</a></li>
+                <li class="navigation__item" v-if="isSignIn || signedIn"><a href="#" class="navigation__link"  @click="userSignOut"><span>01</span>Sign out</a></li>
                 <li class="navigation__item" v-else><router-link to="/signin" class="navigation__link"  @click="selectNavItem"><span>01</span>Sign in</router-link></li>
-                <!-- <li class="navigation__item"><router-link to="/signup" class="navigation__link"  @click="selectNavItem"><span>02</span>Sign up</router-link></li> -->
+                <!-- <li class="navigation__item"><router-link to="/signup" class="navigation__link"  @click="selectNavItem"><span>02</span>Sign up</router-link></li>
                 <li class="navigation__item"><a href="#about" class="navigation__link"  @click="selectNavItem"><span>02</span>About Delish</a></li>
                 <li class="navigation__item"><a href="#benefits" class="navigation__link"  @click="selectNavItem"><span>03</span>Your benefits</a></li>
                 <li class="navigation__item"><a href="#menus" class="navigation__link"  @click="selectNavItem"><span>04</span>Popular set menus</a></li>
                 <li class="navigation__item"><a href="#stories" class="navigation__link"  @click="selectNavItem"><span>05</span>Stories</a></li>
-                <li class="navigation__item"><a href="#joinus" class="navigation__link"  @click="selectNavItem"><span>06</span>Join us</a></li>
-                <li class="navigation__item"><router-link to="/menusdetails" class="navigation__link"  @click="selectNavItem"><span>07</span>Menus Details</router-link></li>
-                <li class="navigation__item"><router-link to="/shoppingcart" class="navigation__link"  @click="selectNavItem"><span>08</span>Shopping Cart</router-link></li>
+                <li class="navigation__item"><a href="#joinus" class="navigation__link"  @click="selectNavItem"><span>06</span>Join us</a></li> -->
+                <li class="navigation__item"><router-link to="/menusdetails" class="navigation__link"  @click="selectNavItem"><span>02</span>Menus</router-link></li>
+                <li class="navigation__item"><router-link to="/shoppingcart" class="navigation__link"  @click="selectNavItem"><span>03</span>Shopping Cart</router-link></li>
             </ul>
         </nav>
     </div>
 </template>
 
 <script>
-import { mapState,mapGetters } from 'vuex';
+import { mapState,mapGetters,mapActions } from 'vuex';
 import GSignInButton from 'vue-google-signin-button';
 
 export default {
     name:'Navigation',
     methods:{
+        ...mapActions(['signIn','signOut']),
         selectNavItem(){
             document.getElementById("navi-toggle").checked = false;
         },
         userSignOut(){
-            // this.$store.dispatch('logout');
+            this.$store.dispatch('logout');
             localStorage.removeItem('token');
             this.$store.dispatch('user',null);
             this.$store.dispatch('gSignin/signOut');
@@ -45,9 +46,9 @@ export default {
             signedIn: state => state.gSignin.signedIn,
             profile: state => state.gSignin.profile
         }),
-        // ...mapGetters(['isSignIn']),
-        ...mapGetters(['user'])
+        ...mapGetters(['isSignIn','user'])
     }
+
 }
 </script>
 

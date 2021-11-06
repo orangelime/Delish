@@ -43,7 +43,7 @@
                             <div v-else>
                                 <a href="#popup" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">Book now!</a>
                             </div> -->
-                            <router-link to="/menusdetails" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">view menus</router-link>
+                            <router-link to="/meals" :class="[`btn btn--${menu.id}`]" @click="handleAddToCart(index)">view menus</router-link>
 
                         </div>
                     </div>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="u-center-text u-margin-bottom-huge">
-            <router-link to="/menusdetails" class="btn btn--white">Discover all menus</router-link>
+            <router-link to="/meals" class="btn btn--white">Discover all menus</router-link>
         </div>
     </section>
 </template>

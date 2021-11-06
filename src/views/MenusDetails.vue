@@ -66,8 +66,8 @@
 
         <!-- shopping-cart icon -->
         <div class="menusdetails__icon">
-            <div class="menusdetails__icon-length" v-if="mealCart">
-                <h1 class="shoppingcart__welcome-text-1">{{mealCart.length}}</h1>
+            <div class="menusdetails__icon-length" v-if="mealsCart.length">
+                <h1 class="shoppingcart__welcome-text-1">{{mealsCart.length}}</h1>
             </div>
             <router-link to="/shoppingcart" class="menusdetails__icon-button">
                 <img class="menusdetails__icon-cart" src="../assets/img/shopping-cart-1x.png">
@@ -103,11 +103,12 @@ export default {
         Popup
     },
     computed:{
-        ...mapGetters(['mealCategory','show','mealCart'])
+        ...mapGetters(['mealCategory','show','mealsCart'])
     },
     mounted(){
         //sticky nav
         window.addEventListener('scroll',this.fixedNav,true);
+        this.$store.dispatch('getMealData',this.categories[8]);
         
     },
     beforeDestroy(){
@@ -115,7 +116,7 @@ export default {
         window.removeEventListener('scroll',this.fixedNav,true);
     },
     created(){
-        this.$store.dispatch('getMealData',this.categories[8]);
+        
     },
     //close dropdown
     directives:{

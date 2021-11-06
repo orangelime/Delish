@@ -25,7 +25,7 @@ const routes = [
     component: () => import("../views/Signup.vue")
   },
   {
-    path: '/menusdetails',
+    path: '/meals',
     name: 'MenusDetails',
     component: () => import("../views/MenusDetails.vue")
   },

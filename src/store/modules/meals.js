@@ -4,7 +4,7 @@ const state = {
     mealDetails:[],
     show:false,
     showingIcon:false,
-    mealCart:[]
+    mealsCart:[]
 }
 
 const getters = {
@@ -26,7 +26,7 @@ const getters = {
             return result;
         })
     },
-    mealCart:state => state.mealCart
+    mealsCart:state => state.mealsCart
 }
 
 const mutations = {
@@ -48,7 +48,7 @@ const mutations = {
         },1000)
     },
     setaddMealToCart:(state, { mealDetails , quantity}) => {
-        state.mealCart.push({mealDetails,quantity})
+        state.mealsCart.push({mealDetails,quantity})
     }
     
 }

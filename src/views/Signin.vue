@@ -102,6 +102,7 @@ export default {
                 alert("login failed");
             }
         },
+        //Laravel後臺登入
         // async userSignIn(){
         //     try{
         //         const response = await axios.post('login',{
