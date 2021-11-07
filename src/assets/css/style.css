@@ -1455,7 +1455,8 @@ body {
 
 .shoppingcart {
   background: #777;
-  color: #fff; }
+  color: #fff;
+  padding-bottom: 5rem; }
   .shoppingcart__header {
     height: 40vh;
     background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.15), rgba(119, 119, 119, 0.65)), url(../img/chef-small.jpg);
@@ -1497,57 +1498,51 @@ body {
         white-space: nowrap;
         width: 95px; } }
   .shoppingcart__content {
-    padding: 3rem 0 2rem 0; }
-    .shoppingcart__content--right {
-      padding-right: 3rem; }
-  .shoppingcart__detail {
-    padding: 0 0 2rem 2rem;
-    line-height: 3rem; }
-    @media only screen and (max-width: 37.5em) {
-      .shoppingcart__detail {
-        line-height: 5rem; } }
-  .shoppingcart input:checked + label {
-    text-decoration: line-through; }
-  .shoppingcart label {
-    font-size: 1.6rem;
-    text-align: left;
-    line-height: 5rem;
-    padding-left: 0.5rem; }
-  .shoppingcart__basket {
+    margin: 10rem 20rem;
     outline: 1.5rem solid #7f262a;
     box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5); }
   .shoppingcart__table {
-    font-size: 1.6rem;
-    text-align: center; }
-    .shoppingcart__table table {
-      margin: auto; }
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
     .shoppingcart__table tr {
-      height: 7rem; }
-    .shoppingcart__table td {
-      vertical-align: middle;
-      text-align: center;
-      width: 500px; }
-    .shoppingcart__table .title {
-      font-weight: 900;
-      font-size: 2rem; }
-    .shoppingcart__table .textarea {
-      font-size: 2rem;
-      min-height: 15rem;
-      max-width: 498.4px;
-      width: 100%;
-      border-radius: 5px;
-      background: #fff;
+      border-bottom: 1px solid #f3f3f3;
+      box-sizing: border-box; }
+    .shoppingcart__table th, .shoppingcart__table td {
+      padding: 15px;
+      text-align: right; }
+    .shoppingcart__table th:first-child, .shoppingcart__table td:first-child {
+      text-align: left; }
+    .shoppingcart__table th:last-child, .shoppingcart__table td:last-child {
+      padding-right: 10px; }
+    .shoppingcart__table thead {
+      color: #ef8a8b;
+      font-size: 16px;
+      text-align: left; }
+    .shoppingcart__table tbody {
+      font-size: 14px; }
+    .shoppingcart__table tbody .table-title {
+      color: #c2c2c2;
+      font-size: 12px; }
+    .shoppingcart__table tfoot {
+      color: #959595;
+      font-size: 12px;
+      background: #f9f9f9; }
+    .shoppingcart__table tfoot .total-price {
+      margin-left: 1em;
       color: #000;
-      border: 1px solid #999;
-      margin-bottom: 15px; }
-    .shoppingcart__table .warning-box {
-      text-transform: uppercase;
-      padding: 1.5rem 4rem;
-      display: inline-block;
-      border-radius: 10rem;
-      font-size: 1.6rem;
-      background: #c5c1c1;
-      width: 100%;
-      color: #000;
-      text-align: center;
-      line-height: 2.7rem; }
+      font-size: 20px; }
+  .shoppingcart .checkout {
+    display: block;
+    width: calc(100% - 2 * 20px);
+    margin: 20px;
+    outline: 0;
+    border: 0;
+    padding: 15px 0;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    background-color: #ef8a8b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer; }
